@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link href="../src/button.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div
+        class="mx-auto flex flex-col lg:flex-row items-center justify-between py-4 px-8 max-w-7xl mt-4"
+      >
+        <div class="flex items-center">
+          <a
+            href="#"
+            class="text-xl font-bold text-blue-500 hover:text-blue-700 mr-10"
+            >Logo</a
+          >
+          <div class="lg:ml-10 font-bold">
+            <h1 class="text-2xl">Main Heading</h1>
+            <h3 class="text-xl">Sub heading</h3>
+          </div>
+        </div>
+        <div>
+          <div class="button button-style">Contact</div>
+        </div>
+      </div>
+
+      <nav class="p-4 container mx-auto">
+        <div
+          class="flex justify-between items-center text-gray-600 font-medium"
+        >
+          <!-- Mobile menu button -->
+          <button
+            id="menuBtn"
+            class="lg:hidden cursor-pointer focus:outline-none"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+
+          <div id="navLinks" class="hidden lg:flex space-x-10 mx-auto">
+            <!-- Navigation links (desktop) -->
+            <ul class="flex space-x-10">
+              <li><a href="#" class="hover:text-gray-900">Home</a></li>
+              <li class="relative">
+                <a href="#" class="hover:text-gray-900" id="productBtn"
+                  >Invest</a
+                >
+                <!-- Dropdown Content -->
+                <ul
+                  id="productDropdown"
+                  class="absolute top-8 left-4 bg-gray-200 py-2 px-4 border border-gray-400 rounded-md hidden"
+                >
+                  <li>
+                    <a href="#" class="hover:text-gray-900 hover:bg-gray-300"
+                      >Buy Panda</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="hover:text-gray-900 hover:bg-gray-300"
+                      >Delegate</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#" class="hover:text-gray-900">Rewards</a></li>
+              <li><a href="#" class="hover:text-gray-900">Discover</a></li>
+              <li><a href="#" class="hover:text-gray-900">Delegator</a></li>
+              <li><a href="#" class="hover:text-gray-900">Rich List</a></li>
+              <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile menu -->
+    <div
+      id="mobileMenu"
+      class="lg:hidden hidden bg-gray-200 absolute inset-0 h-screen"
+    >
+      <div class="flex flex-col items-center justify-center h-full">
+        <button id="closeBtn" class="focus:outline-none mb-4">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+        <ul class="space-y-4">
+          <li><a href="#" class="hover:text-gray-900">Home</a></li>
+          <li class="relative">
+            <a href="#" class="hover:text-gray-900" id="productBtnMobile"
+              >Invest</a
+            >
+            <!-- Dropdown Content -->
+            <ul
+              id="productDropdownMobile"
+              class="absolute top-8 left-0 bg-gray-200 py-2 px-4 border border-gray-400 rounded-md hidden"
+            >
+              <li><a href="#" class="hover:text-gray-900">Buy Panda</a></li>
+              <li><a href="#" class="hover:text-gray-900">Delegate</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="hover:text-gray-900">Rewards</a></li>
+          <li><a href="#" class="hover:text-gray-900">Discover</a></li>
+          <li><a href="#" class="hover:text-gray-900">Delegator</a></li>
+          <li><a href="#" class="hover:text-gray-900">Rich List</a></li>
+          <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pie chart -->
+
+    <div class="holdings-stats mx-auto">
+      <div class="chart-container duration-300">
+        <canvas class="my-chart"></canvas>
+      </div>
+
+      <div class="details duration-300 border-2 card">
+        <h2
+          class="text-2xl font-semibold uppercase text-center py-4 text-gray-700"
+        >
+          Total holdings
+        </h2>
+
+        <hr class="w-4/5 mx-auto border-t-2 border-gray-400 font-bold" />
+        <div class="flex justify-around items-center">
+          <div class="text-3xl font-bold">logo</div>
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+
+
+    <div
+      class="lg:flex w-4/5 lg:w-3/5 mx-auto gap-6 mt-20">
+      
+      <div class="bg-gray-300 p-6 rounded-lg w-full lg:w-1/2 h-72 border-2 border-white shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold mb-4 mt-2 text-gray-700">
+                Live Delegation Data
+            </h2>
+        </div>
+        <div class="w-64 mx-auto">
+            <div class="bg-white p-4 rounded-lg text-center shadow-md font-bold mt-16">
+                <h2>1234566</h2>
+            </div>
+        </div>
+    </div>
+
+      <div class="bg-gray-300 p-6 rounded-lg w-full lg:w-1/2 h-72 border-2 border-white shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold mb-4 mt-2 text-gray-700">
+                 Delegation Rewards
+            </h2>
+        </div>
+        <div class="w-64 mx-auto">
+            <div class="bg-white p-4 rounded-lg text-center shadow-md list-decimal">
+                <li class="text-xl font-bold mb-2 text-gray-600">Panda Token</p>
+                <li class="text-xl font-bold mb-2 text-gray-600">Curation Returns</p>
+                <li class="text-xl font-bold mb-2 text-gray-600">Hive In Dividend</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+  <div class="bg-gray-300 p-6 rounded-lg w-full lg:w-1/4 h-72 border-2 border-white shadow-lg mx-auto mt-6">
+    <div class="text-center">
+        <h2 class="text-3xl font-bold mb-4 mt-2 text-gray-700">
+            Total Panda Token Burned
+        </h2>
+    </div>
+    <div class="w-64 mx-auto">
+        <div class="bg-white p-4 rounded-lg text-center shadow-md font-bold mt-16">
+            <h2>1234566</h2>
+        </div>
+    </div>
+</div>
+
+
+  <!-- Footer -->
+
+  <footer class="bg-gray-200 text-gray-700 py-8 mt-16">
+    <div class="container mx-auto">
+        <div class="flex flex-wrap justify-center">
+            <!-- Footer Column 1 -->
+            <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+                <h2 class="text-3xl font-bold">Logo</h2>
+            </div>
+
+            <!-- Footer Column 2 -->
+            <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+                <h4 class="text-xl font-bold mb-4">Developers</h4>
+                <ul class="list-none">
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            </div>
+
+            <!-- Footer Column 3 -->
+            <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+                <h4 class="text-xl font-bold mb-4">Offerings</h4>
+                <ul class="list-none">
+                    <li><a href="#">Outposts</a></li>
+                    <li><a href="#">SMT</a></li>
+                    <li><a href="#">Legal Services</a></li>
+                </ul>
+            </div>
+
+            <!-- Footer Column 4 -->
+            <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+                <h4 class="text-xl font-bold mb-4">Socials</h4>
+                <ul class="list-none">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    <!--  -->
+
+    <script>
+      document.getElementById("menuBtn").addEventListener("click", function () {
+        document.getElementById("mobileMenu").classList.remove("hidden");
+      });
+
+      document
+        .getElementById("closeBtn")
+        .addEventListener("click", function () {
+          document.getElementById("mobileMenu").classList.add("hidden");
+        });
+
+      // Toggle product dropdown on click (mobile)
+      document
+        .getElementById("productBtnMobile")
+        .addEventListener("click", function () {
+          document
+            .getElementById("productDropdownMobile")
+            .classList.toggle("hidden");
+        });
+      document
+        .getElementById("productBtn")
+        .addEventListener("click", function () {
+          document.getElementById("productDropdown").classList.toggle("hidden");
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
