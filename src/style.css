@@ -14,18 +14,13 @@
     box-shadow: 0 4px 8px -7px rgba(0, 0, 0, 0.3);
 }
 
-.chart-container {
+/* .chart-container {
     width: 400px;
     height: 400px;
-}
+} */
 
 .holdings-stats {
     font-family: "Rubik", sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-top: 80px;
-    justify-content: center;
     width: fit-content;
 }
 .details{

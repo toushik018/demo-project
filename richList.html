@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Rich List</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include tippy.js for pagination tooltips -->
+    <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.5/dist/tippy-bundle.umd.min.js"></script>
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link href="../src/button.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#navbar").load("navbar.html");
+        });
+    </script>
+
+<style>
+    tr.matched {
+        background-color: greenyellow;
+        font-weight: bolder;
+    }
+</style>
+</head>
+
+<header id="navbar"></header>
+
+<body class="bg-gray-100 flex flex-col justify-between">
+    <!-- Search Bar -->
+    
+    <div class="flex justify-center gap-4 text-center py-2 px-4">
+        <input id="searchInput" type="text" placeholder="Search..." class="py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+        <button id="searchButton" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
+    </div>
+     
+ 
+    
+    <!-- Table Container -->
+    <div class="bg-white p-4 mt-4 rounded-t-3xl shadow-lg w-4/5 mx-auto overflow-x-auto">
+        <!-- Table Title -->
+        <h2 class="text-2xl font-semibold mb-4 text-center">Panda Token Rich List</h2>
+    
+        <!-- Table -->
+        <div class="min-w-full">
+            <table class="table-auto w-full">
+                <thead class="rounded-lg">
+                    <tr class="bg-gray-200">
+                        <th class="py-2 px-4 text-left">S.No</th>
+                        <th class="py-2 px-4 text-left">User name</th>
+                        <th class="py-2 px-4 text-left">Balance</th>
+                        <th class="py-2 px-4 text-left">Stake</th>
+                        <th class="py-2 px-4 text-left">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Add table rows here -->
+                    <tr data-sno="1" data-original-sno="1">
+                        <td class="py-2 px-4">1</td>
+                        <td class="py-2 px-4 user-name-cell">User1</td>
+                        <td class="py-2 px-4">100</td>
+                        <td class="py-2 px-4">50</td>
+                        <td class="py-2 px-4">150</td>
+                    </tr>
+                    <tr data-sno="2" data-original-sno="2">
+                        <td class="py-2 px-4">2</td>
+                        <td class="py-2 px-4 user-name-cell">User2</td>
+                        <td class="py-2 px-4">200</td>
+                        <td class="py-2 px-4">45</td>
+                        <td class="py-2 px-4">245</td>
+                    </tr>
+                    <tr data-sno="3" data-original-sno="3">
+                        <td class="py-2 px-4">3</td>
+                   
+<td class="py-2 px-4 user-name-cell">User3</td>
+                        <td class="py-2 px-4">150</td>
+                        <td class="py-2 px-4">60</td>
+                        <td class="py-2 px-4">210</td>
+                    </tr>
+                    <tr data-sno="4" data-original-sno="4">
+                        <td class="py-2 px-4">4</td>
+                        <td class="py-2 px-4 user-name-cell">User4</td>
+                        <td class="py-2 px-4">75</td>
+                        <td class="py-2 px-4">30</td>
+                        <td class="py-2 px-4">105</td>
+                    </tr>
+                    <tr data-sno="5" data-original-sno="5">
+                        <td class="py-2 px-4">5</td>
+                        <td class="py-2 px-4 user-name-cell">User5</td>
+                        <td class="py-2 px-4">300</td>
+                        <td class="py-2 px-4">25</td>
+                        <td class="py-2 px-4">325</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="border my-2"/>
+        </div>
+    
+        <!-- Pagination -->
+        <div class="flex justify-center items-center mt-4 gap-2">
+            <button id="prevBtn" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip" disabled>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="text-gray-600">
+                Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages" class="font-semibold">5</span>
+            </div>
+            <button id="nextBtn" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- Initialize tippy.js for pagination tooltips -->
+    <script>
+        tippy('.pagination-tooltip', {
+            content: 'Go to page'
+        });
+    </script>
+    
+    <!-- Include the JavaScript file -->
+    <script src="richlist.js"></script>
+</body>
+</html>

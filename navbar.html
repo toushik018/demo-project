@@ -1,0 +1,102 @@
+<body>
+    <header>
+        <div class="mx-auto flex flex-col lg:flex-row items-center justify-between py-4 px-8 max-w-7xl mt-4">
+            <div class="flex items-center">
+                <a href="#" class="text-xl font-bold text-blue-500 hover:text-blue-700 mr-10">Logo</a>
+                <div class="lg:ml-10 font-bold">
+                    <h1 class="text-2xl">Main Heading</h1>
+                    <h3 class="text-xl">Sub heading</h3>
+                </div>
+            </div>
+            <div>
+                <div class="button button-style">Contact</div>
+            </div>
+        </div>
+
+        <nav class="p-4 container mx-auto">
+            <div class="flex justify-between items-center text-gray-600 font-medium">
+                <!-- Mobile menu button -->
+                <button id="menuBtn" class="lg:hidden cursor-pointer focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div id="navLinks" class="hidden lg:flex space-x-10 mx-auto">
+                    <!-- Navigation links (desktop) -->
+                    <ul class="flex space-x-10">
+                        <li><a href="index.html" class="hover:text-gray-900">Home</a></li>
+                        <li class="relative">
+                            <a href="#" class="hover:text-gray-900" id="productBtn">Invest</a>
+                            <!-- Dropdown Content -->
+                            <ul id="productDropdown"
+                                class="absolute top-8 left-4 bg-gray-200 py-2 px-4 border border-gray-400 rounded-md hidden">
+                                <li>
+                                    <a href="#" class="hover:text-gray-900 hover:bg-gray-300">Buy Panda</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-gray-900 hover:bg-gray-300">Delegate</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="rewards.html" class="hover:text-gray-900">Rewards</a></li>
+                        <li><a href="discover.html" class="hover:text-gray-900">Discover</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Delegator</a></li>
+                        <li><a href="richList.html" class="hover:text-gray-900">Rich List</a></li>
+                        <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="mobileMenu" class="lg:hidden hidden bg-gray-200 absolute inset-0 h-screen">
+        <div class="flex flex-col items-center justify-center h-full">
+            <button id="closeBtn" class="focus:outline-none mb-4">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <ul class="space-y-4">
+                <li><a href="#" class="hover:text-gray-900">Home</a></li>
+                <li class="relative">
+                    <a href="#" class="hover:text-gray-900" id="productBtnMobile">Invest</a>
+                    <!-- Dropdown Content -->
+                    <ul id="productDropdownMobile"
+                        class="absolute top-8 left-0 bg-gray-200 py-2 px-4 border border-gray-400 rounded-md hidden">
+                        <li><a href="#" class="hover:text-gray-900">Buy Panda</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Delegate</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="hover:text-gray-900">Rewards</a></li>
+                <li><a href="#" class="hover:text-gray-900">Discover</a></li>
+                <li><a href="#" class="hover:text-gray-900">Delegator</a></li>
+                <li><a href="#" class="hover:text-gray-900">Rich List</a></li>
+                <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("menuBtn").addEventListener("click", function () {
+          document.getElementById("mobileMenu").classList.remove("hidden");
+        });
+    
+        document
+          .getElementById("closeBtn")
+          .addEventListener("click", function () {
+            document.getElementById("mobileMenu").classList.add("hidden");
+          });
+    
+        // Toggle product dropdown on click (mobile)
+        document
+          .getElementById("productBtnMobile")
+          .addEventListener("click", function () {
+            document
+              .getElementById("productDropdownMobile")
+              .classList.toggle("hidden");
+          });
+        document
+          .getElementById("productBtn")
+          .addEventListener("click", function () {
+            document.getElementById("productDropdown").classList.toggle("hidden");
+          });
+      </script>
+
+    </body>
