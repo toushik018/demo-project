@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rewards</title>
+    <title>Delegator</title>
     <link href="dist/output.css" rel="stylesheet" />
     <link href="button.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -37,54 +37,83 @@
     <!-- Table -->
 
     <div class="bg-white w-4/5 lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
-
-        <h3 class="text-2xl text-center font-semibold">Reward Distribution</h3>
-
+        <h3 class="text-2xl text-center font-semibold">Delegator Info</h3>
         <div class="mx-auto flex justify-start items-center py-2 gap-4">
-            <button id="newButton" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+            <button id="newButton"
+                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
                 New
             </button>
-            <button id="totalButton" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+            <button id="totalButton"
+                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
                 Total
             </button>
         </div>
-
-        <div id="tableContainer">
+        <!-- New Table -->
+        <div id="newTableContainer">
             <div class="min-w-full overflow-x-auto mx-auto">
                 <table class="table-auto w-full">
                     <thead class="rounded-lg">
                         <tr class="bg-gray-200">
                             <th class="py-2 px-4 text-left">SL</th>
-                            <th class="py-2 px-4 text-left">Token</th>
-                            <th class="py-2 px-4 text-left">Amount</th>
-                            <th class="py-2 px-4 text-left">Time</th>
+                            <th class="py-2 px-4 text-left">User name</th>
+                            <th class="py-2 px-4 text-left">HP Amount</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
+                    <tbody id="NewTableBody">
                         <!-- Table rows will be dynamically added here -->
                         <tr data-sno="1" data-original-sno="1">
                             <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4">Token A</td>
+                            <td class="py-2 px-4">User1</td>
                             <td class="py-2 px-4">$100</td>
-                            <td class="py-2 px-4">10 Aug 2023</td>
                         </tr>
                         <tr data-sno="2" data-original-sno="2">
                             <td class="py-2 px-4">2</td>
-                            <td class="py-2 px-4">Token B</td>
+                            <td class="py-2 px-4">User2</td>
                             <td class="py-2 px-4">$200</td>
-                            <td class="py-2 px-4">11 Aug 2023</td>
                         </tr>
                         <tr data-sno="3" data-original-sno="3">
                             <td class="py-2 px-4">3</td>
-                            <td class="py-2 px-4">Token C</td>
+                            <td class="py-2 px-4">User3</td>
                             <td class="py-2 px-4">$150</td>
-                            <td class="py-2 px-4">12 Aug 2023</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- Total Table -->
+
+        <div id="totalTableContainer" class="hidden bg-white w-full mx-auto border-t-2">
+            <div class=" overflow-x-auto mx-auto">
+                <table class="table-auto w-full">
+                    <thead class="rounded-lg">
+                        <tr class="bg-gray-200">
+                            <th class="py-2 px-4 text-left">SL</th>
+                            <th class="py-2 px-4 text-left">User Name</th>
+                            <th class="py-2 px-4 text-left">Hp Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="totalTableBody">
+                        <!-- Table rows will be dynamically added here -->
+                        <tr data-id="1" data-original-id="1">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">User 1</td>
+                            <td class="py-2 px-4">$10</td>
+                        </tr>
+                        <tr data-id="2" data-original-id="2">
+                            <td class="py-2 px-4">2</td>
+                            <td class="py-2 px-4">User 2</td>
+                            <td class="py-2 px-4">$20</td>
+                        </tr>
+                        <tr data-id="3" data-original-id="3">
+                            <td class="py-2 px-4">3</td>
+                            <td class="py-2 px-4">User 3</td>
+                            <td class="py-2 px-4">$15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Pagination -->
 
         <div id="pagination-section" class="flex justify-center items-center mt-4 gap-2">
@@ -103,18 +132,7 @@
             </button>
         </div>
     </div>
-
-
-    <!-- Stats section -->
-
-    <div id="totalContainer" class="hidden bg-white w-3/5 mx-auto shadow-lg border-t-2">
-        <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
-            <h2 class="text-lg font-semibold mb-2">Total Stats</h2>
-            <p>Total Amount: $500</p>
-            <p>Total Tokens: 100</p>
-        </div>
-    </div>
-
-        <script src="rewards.js"></script>
+    <script src="delegator.js"></script>
 </body>
+
 </html>

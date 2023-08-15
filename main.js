@@ -12,7 +12,7 @@ const chartData = {
       labels: chartData.labels,
       datasets: [
         {
-          label: "Holding Popularity",
+          label: "  Holding Popularity",
           data: chartData.data,
         },
       ],
