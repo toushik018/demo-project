@@ -71,40 +71,42 @@
             </button>
             <ul class="space-y-4 text-center">
                 <li><a href="index.html"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">Home</a>
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">Home</a>
                 </li>
                 <li class="relative group">
-                    <a href="#" class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block"
+                    <a href="#" class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block"
                         id="productBtnMobile">Invest <i class="fas fa-caret-down"></i>  </a>
                     <!-- Dropdown Content -->
                     <ul id="productDropdownMobile"
                         class="absolute top-10 left-2/3 -translate-x-1/2 bg-blue-200 py-2 px-4 border border-gray-600 rounded-md hidden opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-2xl">
                         <li><a href="#"
-                                class="hover:text-blue-400 text-black whitespace-nowrap p-1 mb-2 rounded-md block">Buy
+                                class="hover:text-blue-400 text-black whitespace-nowrap p-1 mb-2 rounded-md block text-lg font-semibold">Buy
                                 Panda</a>
                         </li>
                         <li><a href="#"
-                                class="hover:text-blue-400 text-black whitespace-nowrap p-1 rounded-md block">Delegate</a>
+                                class="hover:text-blue-400 text-black whitespace-nowrap p-1 rounded-md block text-lg font-semibold">Delegate</a>
                         </li>
                     </ul>
                 </li>
                 <li><a href="rewards.html"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">Rewards</a>
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">Rewards</a>
                 </li>
                 <li><a href="discover.html"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">Discover</a>
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">Discover</a>
                 </li>
                 <li><a href="delegator.html"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">Delegator</a>
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">Delegator</a>
                 </li>
                 <li><a href="richList.html"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">Rich
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">Rich
                         List</a></li>
                 <li><a href="#"
-                        class="hover:text-blue-400 text-white text-lg bg-gray-800 py-2 px-4 rounded-md block">About
+                        class="hover:text-blue-400 text-white text-xl bg-gray-800 py-2 px-4 rounded-md block">About
                         Us</a></li>
             </ul>
-            <div class="lg:hidden button button-style text-md mt-4">Contact</div>
+
+        
+            <div class="lg:hidden button button-style text-xl mt-8">Contact</div>
         </div>
     </div>
 
@@ -122,6 +124,10 @@
             mobileMenu.classList.add("opacity-0", "translate-y-[-10px]");
             mobileMenu.classList.add("hidden");
         });
+
+
+
+
 
         // Use JavaScript to handle hover effect for the "Invest" link
         document.getElementById("productBtnMobile").addEventListener("mouseenter", function () {
