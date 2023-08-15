@@ -45,13 +45,13 @@ updatePagination();
 
 
 
-
 // For search functionality
 
 document.getElementById("searchButton").addEventListener("click", searchUser);
 
 function searchUser() {
     var searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
+    // console.log(searchValue);
     var rows = document.querySelectorAll("tbody tr");
     var found = false;
 

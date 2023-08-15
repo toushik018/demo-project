@@ -23,7 +23,6 @@ totalButton.addEventListener('click', () => {
 
 
 
-// For rewards
 
 // For Pagination
 const rowsPerPage = 2;
@@ -34,7 +33,7 @@ const nextBtn = document.getElementById('nextBtn');
 const currentPageElement = document.getElementById('currentPage');
 const totalPagesElement = document.getElementById('totalPages');
 
-const newTableBody = document.getElementById('NewTableBody');
+const newTableBody = document.getElementById('topTableBody');
 const totalTableBody = document.getElementById('totalTableBody');
 let currentTableBody = newTableBody; // Initial table body
 let currentTableRows = newTableBody.querySelectorAll('tr');
@@ -82,54 +81,5 @@ updatePagination();
 
 
 
-
-
-
-
-
-
-
-
-
-
 // For search functionality
-
-document.getElementById("searchButton").addEventListener("click", searchUser);
-
-function searchUser() {
-    var searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
-    var rows = document.querySelectorAll("tbody tr");
-    var found = false;
-
-    for (var i = 0; i < rows.length; i++) {
-        var userName = rows[i].querySelector(".user-name-cell").textContent.trim().toLowerCase();
-        if (userName === searchValue) {
-            rows[i].classList.add("matched");
-            rows[i].parentNode.prepend(rows[i]);
-            found = true;
-        } else {
-            rows[i].classList.remove("matched");
-        }
-    }
-
-    if (found) {
-        // Find and display the page containing the matching user
-        for (var page = 1; page <= Math.ceil(rows.length / rowsPerPage); page++) {
-            var startIdx = (page - 1) * rowsPerPage;
-            var endIdx = startIdx + rowsPerPage;
-            var matchedRow = Array.from(rows).find((row, index) => index >= startIdx && index < endIdx && row.classList.contains("matched"));
-            if (matchedRow) {
-                currentPage = page;
-                showPage(currentPage);
-                updatePagination();
-                break;
-            }
-        }
-    } else {
-        // If not found, reset pagination and display the first page
-        currentPage = 1;
-        showPage(currentPage);
-        updatePagination();
-    }
-}
 
