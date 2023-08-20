@@ -48,93 +48,63 @@
 
 
     <!-- Table Container -->
-   <div class="px-4">
-    <div class="bg-white p-4 mt-4 rounded-t-3xl shadow-lg lg:w-4/5 mx-auto overflow-hidden">
-        <!-- Table Title -->
-        <h2 class="text-2xl font-semibold mb-4 text-center">Panda Token Rich List</h2>
+    <div class="px-2">
+        <div class="bg-white p-4 mt-4 rounded-t-3xl shadow-lg lg:w-full mx-auto overflow-hidden">
+            <!-- Table Title -->
+            <h2 class="text-2xl font-semibold mb-4 text-center">Panda Token Rich List</h2>
 
-        <!-- Table -->
-        <div class="min-w-full overflow-x-auto mx-auto">
-            <table class="table-auto w-full">
-                <thead class="rounded-lg">
-                    <tr class="bg-gray-200">
-                        <th class="py-2 px-4 text-left">S.No</th>
-                        <th class="py-2 px-4 text-left">User name</th>
-                        <th class="py-2 px-4 text-left">Balance</th>
-                        <th class="py-2 px-4 text-left">Stake</th>
-                        <th class="py-2 px-4 text-left">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Add table rows here -->
-                    <tr data-sno="1" data-original-sno="1">
-                        <td class="py-2 px-4">1</td>
-                        <td class="py-2 px-4 user-name-cell">User1</td>
-                        <td class="py-2 px-4">100</td>
-                        <td class="py-2 px-4">50</td>
-                        <td class="py-2 px-4">150</td>
-                    </tr>
-                    <tr data-sno="2" data-original-sno="2">
-                        <td class="py-2 px-4">2</td>
-                        <td class="py-2 px-4 user-name-cell">User2</td>
-                        <td class="py-2 px-4">200</td>
-                        <td class="py-2 px-4">45</td>
-                        <td class="py-2 px-4">245</td>
-                    </tr>
-                    <tr data-sno="3" data-original-sno="3">
-                        <td class="py-2 px-4">3</td>
+            <!-- Table -->
+            <div class="min-w-full overflow-x-auto mx-auto">
+                <table class="table-auto w-full">
+                    <thead class="rounded-lg">
+                        <tr class="bg-gray-300">
+                            <th class="py-2 px-4 text-left">S.No</th>
+                            <th class="py-2 px-4 text-left">User name</th>
+                            <th class="py-2 px-4 text-left">Balance</th>
+                            <th class="py-2 px-4 text-left">Stake</th>
+                            <th class="py-2 px-4 text-left">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Add table rows here -->
+                       
+                    </tbody>
+                </table>
 
-                        <td class="py-2 px-4 user-name-cell">User3</td>
-                        <td class="py-2 px-4">150</td>
-                        <td class="py-2 px-4">60</td>
-                        <td class="py-2 px-4">210</td>
-                    </tr>
-                    <tr data-sno="4" data-original-sno="4">
-                        <td class="py-2 px-4">4</td>
-                        <td class="py-2 px-4 user-name-cell">User4</td>
-                        <td class="py-2 px-4">75</td>
-                        <td class="py-2 px-4">30</td>
-                        <td class="py-2 px-4">105</td>
-                    </tr>
-                    <tr data-sno="5" data-original-sno="5">
-                        <td class="py-2 px-4">5</td>
-                        <td class="py-2 px-4 user-name-cell">User5</td>
-                        <td class="py-2 px-4">300</td>
-                        <td class="py-2 px-4">25</td>
-                        <td class="py-2 px-4">325</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        <!-- Pagination -->
-        <div class="flex justify-center items-center mt-4 gap-2">
-            <button id="prevBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
-                disabled>
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <div class="text-gray-600">
-                Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages"
-                    class="font-semibold">5</span>
             </div>
-            <button id="nextBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center mt-4 gap-2">
+                <button id="prevBtn"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
+                    disabled>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="text-gray-600">
+                    Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages"
+                        class="font-semibold">5</span>
+                </div>
+                <button id="nextBtn"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </div>
-   </div>
 
 
     <!-- Initialize tippy.js for pagination tooltips -->
-    <script>
+    <!-- <script>
         tippy('.pagination-tooltip', {
             content: 'Go to page'
         });
-    </script>
+    </script> -->
 
+<script>
+    
+      
+
+</script>
     <!-- Include the JavaScript file -->
     <script src="richlist.js"></script>
 </body>

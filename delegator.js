@@ -81,5 +81,75 @@ updatePagination();
 
 
 
-// For search functionality
+// Api
+
+
+const apiTableBody = document.getElementById('apiTableBody');
+
+// Function to fetch API data and populate the table
+async function fetchAndPopulateData() {
+    const apiUrl = 'https://api.hive-engine.com/rpc/contracts';
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0',
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Origin': 'https://he.dtools.dev',
+                'Connection': 'keep-alive',
+                'Referer': 'https://he.dtools.dev/',
+                'Sec-Fetch-Dest': 'empty',
+                'Sec-Fetch-Mode': 'cors',
+                'Sec-Fetch-Site': 'cross-site'
+            },
+            body: JSON.stringify({
+                'jsonrpc': '2.0',
+                'id': 1692187530638,
+                'method': 'find',
+                'params': {
+                    'contract': 'tokens',
+                    'table': 'balances',
+                    'query': {
+                        'symbol': 'SPS'
+                    },
+                    'offset': 0,
+                    'limit': 1000
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        const rows = data.result;
+
+        apiTableBody.innerHTML = ''; // Clear existing rows
+
+        // Populate the table with fetched data
+        rows.forEach((row, index) => {
+            const newRow = `
+                <tr>
+                    <td class="py-2 px-4">${index + 1}</td>
+                    <td class="py-2 px-4 user-name-cell">${row.user}</td>
+                    <td class="py-2 px-4">${row.amount}</td>
+                </tr>
+            `;
+
+            apiTableBody.insertAdjacentHTML('beforeend', newRow);
+        });
+
+    } catch (error) {
+        console.error('Error fetching API data:', error);
+    }
+}
+
+// Call the function to fetch and populate data
+fetchAndPopulateData();
 

@@ -78,7 +78,7 @@
                         id="productBtnMobile">Invest <i class="fas fa-caret-down"></i>  </a>
                     <!-- Dropdown Content -->
                     <ul id="productDropdownMobile"
-                        class="absolute top-10 left-2/3 -translate-x-1/2 bg-blue-200 py-2 px-4 border border-gray-600 rounded-md hidden opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-2xl">
+                        class="absolute top-10 left-2/3 -translate-x-1/2 bg-blue-200 py-2 px-4 border border-gray-600 rounded-md hidden opacity-0  group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-2xl">
                         <li><a href="#"
                                 class="hover:text-blue-400 text-black whitespace-nowrap p-1 mb-2 rounded-md block text-lg font-semibold">Buy
                                 Panda</a>
@@ -125,39 +125,38 @@
             mobileMenu.classList.add("hidden");
         });
 
-
-
-
-
-        // Use JavaScript to handle hover effect for the "Invest" link
-        document.getElementById("productBtnMobile").addEventListener("mouseenter", function () {
-            const productDropdownMobile = document.getElementById("productDropdownMobile");
-            productDropdownMobile.classList.remove("hidden", "opacity-0", "scale-95");
+        // Use JavaScript to handle hover effect for the "Invest" link on mobile
+        const productBtnMobile = document.getElementById("productBtnMobile");
+        const productDropdownMobile = document.getElementById("productDropdownMobile");
+        
+        productBtnMobile.addEventListener("mouseenter", function () {
+            productDropdownMobile.classList.remove("hidden");
             productDropdownMobile.classList.add("opacity-100", "scale-100");
         });
 
-        document.getElementById("productBtnMobile").addEventListener("mouseleave", function () {
-            const productDropdownMobile = document.getElementById("productDropdownMobile");
+        productDropdownMobile.addEventListener("mouseleave", function () {
             productDropdownMobile.classList.remove("opacity-100", "scale-100");
             productDropdownMobile.classList.add("opacity-0", "scale-95");
-            setTimeout(() => {
+            productDropdownMobile.addEventListener("transitionend", function () {
                 productDropdownMobile.classList.add("hidden");
-            }, 10000);
+            }, { once: true });
         });
         
-        document.getElementById("productBtn").addEventListener("mouseenter", function () {
-            const productDropdown = document.getElementById("productDropdown");
-            productDropdown.classList.remove("hidden", "opacity-0", "scale-95");
+        // Use JavaScript to handle hover effect for the "Invest" link on desktop
+        const productBtn = document.getElementById("productBtn");
+        const productDropdown = document.getElementById("productDropdown");
+        
+        productBtn.addEventListener("mouseenter", function () {
+            productDropdown.classList.remove("hidden");
             productDropdown.classList.add("opacity-100", "scale-100");
         });
 
-        document.getElementById("productBtn").addEventListener("mouseleave", function () {
-            const productDropdownMobile = document.getElementById("productDropdown");
+        productDropdown.addEventListener("mouseleave", function () {
             productDropdown.classList.remove("opacity-100", "scale-100");
             productDropdown.classList.add("opacity-0", "scale-95");
-            setTimeout(() => {
+            productDropdown.addEventListener("transitionend", function () {
                 productDropdown.classList.add("hidden");
-            }, 10000);
+            }, { once: true });
         });
     </script>
 </body>

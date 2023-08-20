@@ -9,20 +9,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#navbar").load("navbar.html");
-        });
-    </script>
+        <script type="text/javascript">
+            $(function () {
+                $("#navbar").load("navbar.html");
+            });
+        </script>
+   
 </head>
 
-<body>
+<body class="bg-gray-100">
     <header id="navbar"> </header>
-    <h1 class="text-2xl bg-orange-700">This is discover page</h1>
-</body>
+    
+    <div class="w-4/5 mx-auto mt-20">
+        <div class="mx-auto p-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <img class="w-full h-40 object-cover" src="image1.jpg" alt="Image 1">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold mb-2">Card Title 1</h3>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
+                    <p class="text-gray-700">Vivamus euismod, dui non tincidunt convallis, felis leo fringilla.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <img class="w-full h-40 object-cover" src="image3.jpg" alt="Image 3">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold mb-2">Card Title 3</h3>
+                    <p class="text-gray-700">Nullam euismod libero non augue mattis, non facilisis dui facilisis.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <img class="w-full h-40 object-cover" src="image4.jpg" alt="Image 4">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold mb-2">Card Title 4</h3>
+                    <p class="text-gray-700">Fusce id magna vitae neque malesuada semper. Pellentesque habitant morbi.</p>
+                </div>
+            </div>
+        </div>
 
+        <hr class="border-2 border-gray-200 mt-10 mb-10"> </hr>
+      
+            <div class="bg-white rounded-md p-6 transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg text-center border-2 border-gray-200 mb-10">
+                <p class="text-lg font-semibold mb-2">Single Text Card</p>
+                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus.</p>
+            </div>
+       
+
+    </div>
+</body>
 </html>
