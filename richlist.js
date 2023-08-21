@@ -52,13 +52,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log(newData);
         
         newData.forEach((balance, index) => {
+
+            const userBalance = parseFloat(balance.balance).toFixed(3);
+            const totalBalance = parseFloat(balance.balance + balance.delegationsIn).toFixed(3);
+
+
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td class="py-2 px-4">${index + 1 + offset}</td>
                 <td class="py-2 px-4 user-name-cell">${balance.account}</td>
-                <td class="py-2 px-4">${balance.balance}</td>
+                <td class="py-2 px-4">${userBalance}</td>
                 <td class="py-2 px-4">${balance.stake}</td>
-                <td class="py-2 px-4">${balance.balance + balance.stake}</td>
+                <td class="py-2 px-4">${balance.pendingUnstake}</td>
+                <td class="py-2 px-4">${balance.delegationsIn}</td>
+                <td class="py-2 px-4">${balance.delegationsOut}</td>
+                <td class="py-2 px-4">${balance.pendingUndelegations}</td>
+                <td class="py-2 px-4">${totalBalance}</td>
             `;
             tableBody.appendChild(newRow);
         });
