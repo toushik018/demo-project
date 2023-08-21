@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.5/dist/tippy-bundle.umd.min.js"></script>
     <link href="/dist/output.css" rel="stylesheet" />
     <link href="button.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../src/style.css" />
+    <link href="richlistLoader.css" rel="stylesheet" />
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -25,17 +25,25 @@
         });
     </script>
 
-    <style>
-        tr.matched {
-            background-color: greenyellow;
-            font-weight: bolder;
-        }
-    </style>
+<style>
+    tr.matched {
+        background-color: greenyellow;
+        font-weight: bolder;
+    }
+    tr:not(.matched):nth-child(even) td {
+        background-color: #f3f4f6; /* Set background color for even rows */
+    }
+    tr:not(.matched):nth-child(odd) td {
+        background-color: white; /* Set background color for odd rows */
+    }
+</style>
 </head>
 
 <header id="navbar"></header>
 
 <body class="bg-gray-100 flex flex-col justify-between">
+
+
     <!-- Search Bar -->
 
     <div class="flex justify-center gap-4 text-center py-2 px-4 mt-10">
@@ -46,15 +54,24 @@
     </div>
 
 
-
     <!-- Table Container -->
     <div class="px-2">
         <div class="bg-white p-4 mt-4 rounded-t-3xl shadow-lg lg:w-full mx-auto overflow-hidden">
+
+            <div id="spinner" class="fixed inset-0 z-50 hidden">
+                <div class="bg-gray-500 bg-opacity-40 flex items-center justify-center h-full">
+                    <span class="loader"></span>
+                </div>
+            </div>
+            
+
             <!-- Table Title -->
             <h2 class="text-2xl font-semibold mb-4 text-center">Panda Token Rich List</h2>
 
             <!-- Table -->
             <div class="min-w-full overflow-x-auto mx-auto">
+
+                
                 <table class="table-auto w-full">
                     <thead class="rounded-lg">
                         <tr class="bg-gray-300">

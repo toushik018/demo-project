@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', async function () {
     const tableBody = document.getElementById('tableBody');
-    
+    const spinner = document.getElementById('spinner');
+
+
     async function fetchData(offset) {
         const response = await fetch('https://api.hive-engine.com/rpc/contracts', {
             method: 'POST',
@@ -40,6 +42,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     let offset = 0;
     let newData;
+
+    spinner.classList.remove('hidden');
+    tableBody.style.display = 'none';
     
     do {
         newData = await fetchData(offset);
@@ -61,7 +66,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         offset += 1000;
     } while (newData.length > 0);
 
-
+    spinner.classList.add('hidden');
+    tableBody.style.display = ''; 
 
 
 // For Pagination
