@@ -52,8 +52,9 @@ function updateAvatars() {
 
             const jsonMetadata = JSON.parse(data.result[0].json_metadata);
             profileImageUrl = jsonMetadata.profile.profile_image;
+            thumbnail = jsonMetadata.profile.cover_image;
 
-            console.log(profileImageUrl);
+            console.log(thumbnail);
 
             const avatarImages = document.querySelectorAll('.avatar-image');
 
