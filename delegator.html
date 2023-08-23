@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +20,19 @@
         });
     </script>
 
-
     <style>
         tr.matched {
             background-color: greenyellow;
             font-weight: bolder;
+        }
+
+        tr:not(.matched):nth-child(even) td {
+            background-color: #f3f4f6;
+            
+        }
+
+        tr:not(.matched):nth-child(odd) td {
+            background-color: white;
         }
     </style>
 </head>
@@ -40,119 +49,115 @@
             class="bg-gray-200 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
     </div>
 
+    <h4 id="searchWarning" class="text-md text-red-500 text-center hidden"></h4>
+
+
 
     <!-- Table -->
 
-   <div class="px-4">
-    <div class="bg-white w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
-        <h3 class="text-2xl text-center font-semibold">Delegator Info</h3>
-        <div class="mx-auto flex justify-start items-center py-2 gap-4">
-            <button id="newButton"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
-                TOP
-            </button>
-            <button id="totalButton"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
-                NEW
-            </button>
-        </div>
-        <!-- New Table -->
-        <div id="newTableContainer">
-            <div class="min-w-full overflow-x-auto mx-auto">
-                <table class="table-auto w-full">
-                    <thead class="rounded-lg">
-                        <tr class="bg-gray-200">
-                            <th class="py-2 px-4 text-left">SL</th>
-                            <th class="py-2 px-4 text-left">User name</th>
-                            <th class="py-2 px-4 text-left">HP Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="topTableBody" id="apiTableBody">
-                        <!-- Table rows will be dynamically added here -->
-                        <tr data-sno="1" data-original-sno="1">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4 user-name-cell">User1</td>
-                            <td class="py-2 px-4">$100</td>
-                        </tr>
-                        <tr data-sno="2" data-original-sno="2">
-                            <td class="py-2 px-4">2</td>
-                            <td class="py-2 px-4 user-name-cell">User2</td>
-                            <td class="py-2 px-4">$200</td>
-                        </tr>
-                        <tr data-sno="3" data-original-sno="3">
-                            <td class="py-2 px-4">3</td>
-                            <td class="py-2 px-4 user-name-cell">User3</td>
-                            <td class="py-2 px-4">$150</td>
-                        </tr>
-                        <tr data-sno="4" data-original-sno="4">
-                            <td class="py-2 px-4">4</td>
-                            <td class="py-2 px-4 user-name-cell">User4</td>
-                            <td class="py-2 px-4">$150</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="px-4">
+        <div class="bg-white w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
+            <h3 class="text-2xl text-center font-semibold">Delegator Info</h3>
+            <div class="mx-auto flex justify-start items-center py-2 gap-4">
+                <button id="topTableButton"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+                    TOP
+                </button>
+                <button id="newTableButton"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+                    NEW
+                </button>
             </div>
-        </div>
-
-        <!-- Total Table -->
-
-        <div id="totalTableContainer" class="hidden bg-white w-full mx-auto border-t-2">
-            <div class=" overflow-x-auto mx-auto">
-                <table class="table-auto w-full">
-                    <thead class="rounded-lg">
-                        <tr class="bg-gray-200">
-                            <th class="py-2 px-4 text-left">SL</th>
-                            <th class="py-2 px-4 text-left">User Name</th>
-                            <th class="py-2 px-4 text-left">Hp Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="totalTableBody">
-                        <!-- Table rows will be dynamically added here -->
-                        <tr data-id="1" data-original-id="1">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4 user-name-cell">User1</td>
-                            <td class="py-2 px-4">$10</td>
-                        </tr>
-                        <tr data-id="2" data-original-id="2">
-                            <td class="py-2 px-4">2</td>
-                            <td class="py-2 px-4 user-name-cell">User2</td>
-                            <td class="py-2 px-4">$20</td>
-                        </tr>
-                        <tr data-id="3" data-original-id="3">
-                            <td class="py-2 px-4">3</td>
-                            <td class="py-2 px-4 user-name-cell">User3</td>
-                            <td class="py-2 px-4">$15</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Top Table -->
+            <div id="topTableContainer">
+                <div class="min-w-full overflow-x-auto mx-auto">
+                    <table class="table-auto w-full">
+                        <thead class="rounded-lg">
+                            <tr class="bg-gray-200">
+                                <th class="py-2 px-4 text-left">SL</th>
+                                <th class="py-2 px-4 text-left">User name</th>
+                                <th class="py-2 px-4 text-left">HP Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topTableBody" id="apiTableBody">
+                            <!-- Table rows will be dynamically added here -->
+                            <tr data-sno="1" data-original-sno="1">
+                                <td class="py-2 px-4">1</td>
+                                <td class="py-2 px-4 user-name-cell">User1</td>
+                                <td class="py-2 px-4">$100</td>
+                            </tr>
+                            <tr data-sno="2" data-original-sno="2">
+                                <td class="py-2 px-4">2</td>
+                                <td class="py-2 px-4 user-name-cell">User2</td>
+                                <td class="py-2 px-4">$200</td>
+                            </tr>
+                            <tr data-sno="3" data-original-sno="3">
+                                <td class="py-2 px-4">3</td>
+                                <td class="py-2 px-4 user-name-cell">User3</td>
+                                <td class="py-2 px-4">$150</td>
+                            </tr>
+                            <tr data-sno="4" data-original-sno="4">
+                                <td class="py-2 px-4">4</td>
+                                <td class="py-2 px-4 user-name-cell">User4</td>
+                                <td class="py-2 px-4">$150</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <!-- Pagination -->
 
-        <div id="pagination-section" class="flex justify-center items-center mt-4 gap-2">
-            <button id="prevBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
-                disabled>
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <div class="text-gray-600">
-                Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages"
-                    class="font-semibold">5</span>
+            <!-- New Table -->
+
+            <div id="newTableContainer" class="hidden bg-white w-full mx-auto border-t-2">
+                <div class=" overflow-x-auto mx-auto">
+                    <table class="table-auto w-full">
+                        <thead class="rounded-lg">
+                            <tr class="bg-gray-200">
+                                <th class="py-2 px-4 text-left">SL</th>
+                                <th class="py-2 px-4 text-left">User Name</th>
+                                <th class="py-2 px-4 text-left">Hp Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newTableBody">
+                            <!-- Table rows will be dynamically added here -->
+                            <tr data-id="1" data-original-id="1">
+                                <td class="py-2 px-4">1</td>
+                                <td class="py-2 px-4 user-name-cell">User1</td>
+                                <td class="py-2 px-4">$10</td>
+                            </tr>
+                            <tr data-id="2" data-original-id="2">
+                                <td class="py-2 px-4">2</td>
+                                <td class="py-2 px-4 user-name-cell">User2</td>
+                                <td class="py-2 px-4">$20</td>
+                            </tr>
+                            <tr data-id="3" data-original-id="3">
+                                <td class="py-2 px-4">3</td>
+                                <td class="py-2 px-4 user-name-cell">User3</td>
+                                <td class="py-2 px-4">$15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <button id="nextBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <!-- Pagination -->
+
+            <div id="pagination-section" class="flex justify-center items-center mt-4 gap-2">
+                <button id="prevBtn"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
+                    disabled>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="text-gray-600">
+                    Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages"
+                        class="font-semibold">5</span>
+                </div>
+                <button id="nextBtn"
+                    class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </div>
-   </div>
-    
-
-
-
-
-
-
 
 
 
@@ -163,48 +168,7 @@
 
     <script src="delegator.js"></script>
 
-<!-- Search functionality's code here in the delegator's html -->
-
-    <script>
-        document.getElementById("searchButton").addEventListener("click", searchUser);
-
-        function searchUser() {
-            var searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
-            var rows = document.querySelectorAll("tbody tr");
-            var found = false;
-
-            for (var i = 0; i < rows.length; i++) {
-                var userName = rows[i].querySelector(".user-name-cell").textContent.trim().toLowerCase();
-                if (userName === searchValue) {
-                    rows[i].classList.add("matched");
-                    rows[i].parentNode.prepend(rows[i]);
-                    found = true;
-                } else {
-                    rows[i].classList.remove("matched");
-                }
-            }
-
-            if (found) {
-                // Find and display the page containing the matching user
-                for (var page = 1; page <= Math.ceil(rows.length / rowsPerPage); page++) {
-                    var startIdx = (page - 1) * rowsPerPage;
-                    var endIdx = startIdx + rowsPerPage;
-                    var matchedRow = Array.from(rows).find((row, index) => index >= startIdx && index < endIdx && row.classList.contains("matched"));
-                    if (matchedRow) {
-                        currentPage = page;
-                        showPage(currentPage);
-                        updatePagination();
-                        break;
-                    }
-                }
-            } else {
-                // If not found, reset pagination and display the first page
-                currentPage = 1;
-                showPage(currentPage);
-                updatePagination();
-            }
-        }
-    </script>
+  
 
 </body>
 

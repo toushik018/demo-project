@@ -2,7 +2,7 @@ const newButton = document.getElementById('newButton');
 const totalButton = document.getElementById('totalButton');
 const tableContainer = document.getElementById('tableContainer');
 const totalContainer = document.getElementById('totalContainer');
-const paginationSection = document.getElementById('pagination-section'); 
+const paginationSection = document.getElementById('pagination-section');
 
 newButton.addEventListener('click', () => {
     tableContainer.style.display = 'block';
@@ -22,16 +22,49 @@ totalButton.addEventListener('click', () => {
     newButton.classList.remove('bg-blue-500', 'text-white');
 });
 
+// sample data
+const sampleData = [
+    {'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12' },
+    {'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12'},
+    {'username': 'sourov', 'token': 'dec', 'amount': 2000.0, 'date': '12/12/12'},
+    {'username': 'john', 'token': 'btc', 'amount': 1500.0, 'date': '11/10/21'},
+    {'username': 'jane', 'token': 'eth', 'amount': 800.0, 'date': '10/09/20'},
+    {'username': 'alice', 'token': 'bnb', 'amount': 500.0, 'date': '09/08/19'},
+    {'username': 'bob', 'token': 'xrp', 'amount': 1200.0, 'date': '08/07/18'},
+    {'username': 'david', 'token': 'ltc', 'amount': 900.0, 'date': '07/06/17'},
+    {'username': 'emily', 'token': 'doge', 'amount': 700.0, 'date': '06/05/16'},
+    {'username': 'frank', 'token': 'ada', 'amount': 1100.0, 'date': '05/04/15'},
+    {'username': 'grace', 'token': 'dot', 'amount': 1800.0, 'date': '04/03/14'},
+    {'dec': 2000.0, 'sps': 1000.0}
+
+];
 
 
+function populateTable(data) {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
 
+    data.forEach((item) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="py-2 px-4">${item.username}</td>
+            <td class="py-2 px-4">${item.token}</td>
+            <td class="py-2 px-4">${item.amount}</td>
+            <td class="py-2 px-4">${item.date}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Update tableRows after populating the table
+    tableRows = document.querySelectorAll('tbody tr');
+}
 
 // For rewards
 
 // For Pagination
-const rowsPerPage = 2;
+const rowsPerPage = 4;
 let currentPage = 1;
-const tableRows = document.querySelectorAll('tbody tr');
+let tableRows = document.querySelectorAll('tbody tr'); // Move this here
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const currentPageElement = document.getElementById('currentPage');
@@ -70,14 +103,12 @@ nextBtn.addEventListener('click', () => {
     }
 });
 
+// Initial setup
+populateTable(sampleData);
 showPage(currentPage);
 updatePagination();
 
-
-
-
 // For search functionality
-
 document.getElementById("searchButton").addEventListener("click", searchUser);
 
 function searchUser() {
@@ -86,7 +117,7 @@ function searchUser() {
     var found = false;
 
     for (var i = 0; i < rows.length; i++) {
-        var userName = rows[i].querySelector(".user-name-cell").textContent.trim().toLowerCase();
+        var userName = rows[i].querySelector("td:nth-child(1)").textContent.trim().toLowerCase();
         if (userName === searchValue) {
             rows[i].classList.add("matched");
             rows[i].parentNode.prepend(rows[i]);
@@ -116,4 +147,3 @@ function searchUser() {
         updatePagination();
     }
 }
-

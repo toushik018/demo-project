@@ -19,6 +19,20 @@
             $("#navbar").load("navbar.html");
         });
     </script>
+
+<style>
+    tr.matched {
+        background-color: greenyellow;
+        font-weight: bolder;
+    }
+    tr:not(.matched):nth-child(even) td {
+        background-color: #f3f4f6; /* Set background color for even rows */
+    }
+    tr:not(.matched):nth-child(odd) td {
+        background-color: white; /* Set background color for odd rows */
+    }
+</style>
+
 </head>
 
 <body class="bg-gray-100">

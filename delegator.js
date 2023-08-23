@@ -1,155 +1,231 @@
-const newButton = document.getElementById('newButton');
-const totalButton = document.getElementById('totalButton');
-const tableContainer = document.getElementById('newTableContainer');
-const totalContainer = document.getElementById('totalTableContainer');
-
-newButton.addEventListener('click', () => {
-    tableContainer.style.display = 'block';
-    totalContainer.style.display = 'none';
-
-    newButton.classList.add('bg-blue-500', 'text-white');
-    totalButton.classList.remove('bg-blue-500', 'text-white');
-});
-
-totalButton.addEventListener('click', () => {
-    tableContainer.style.display = 'none';
-    totalContainer.style.display = 'block';
-
-    totalButton.classList.add('bg-blue-500', 'text-white');
-    newButton.classList.remove('bg-blue-500', 'text-white');
-});
+// Get references to HTML elements
+const topTableButton = document.getElementById("topTableButton");
+const newTableButton = document.getElementById("newTableButton");
+const topTableContainer = document.getElementById("topTableContainer");
+const newTableContainer = document.getElementById("newTableContainer");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const topTableBody = document.getElementById("topTableBody");
+const newTableBody = document.getElementById("newTableBody");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const currentPageSpan = document.getElementById("currentPage");
+const totalPagesSpan = document.getElementById("totalPages");
 
 
 
 
 
-
-// For Pagination
-const rowsPerPage = 2;
+// Initial values
+let currentTable = "top";
 let currentPage = 1;
-const tableRows = document.querySelectorAll('tbody tr');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const currentPageElement = document.getElementById('currentPage');
-const totalPagesElement = document.getElementById('totalPages');
+const itemsPerPage = 10; // Number of items to display per page
 
-const newTableBody = document.getElementById('topTableBody');
-const totalTableBody = document.getElementById('totalTableBody');
-let currentTableBody = newTableBody; // Initial table body
-let currentTableRows = newTableBody.querySelectorAll('tr');
+// Fetch data from API and populate tables
+// Fetch data from API and populate tables
+// Fetch data from API and populate tables
+const hiveKeychain = 'https://api.hive-keychain.com/hive/delegators/bdvoter';
+fetch(hiveKeychain)
+    .then(res => res.json())
+    .then(data => {
+        const nonZeroVestingData = data.filter(item => item.vesting_shares !== 0);
+        
+        topTableData = nonZeroVestingData.map(item => ({
+            userName: item.delegator,
+            hpAmount: item.vesting_shares
+        }));
+        newTableData = nonZeroVestingData.map(item => ({
+            userName: item.delegator,
+            hpAmount: item.vesting_shares
+        }));
+        
+        // Now that the data is processed, update the table and pagination
+        updateTableAndPagination();
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 
-
-function showPage(tableBody, pageNumber) {
-    const startIdx = (pageNumber - 1) * rowsPerPage;
-    const endIdx = startIdx + rowsPerPage;
-
-    const tableRows = tableBody.querySelectorAll('tr');
-    tableRows.forEach((row, index) => {
-        row.style.display = (index >= startIdx && index < endIdx) ? 'table-row' : 'none';
+// Function to populate table body
+function populateTable(tableBody, data) {
+    tableBody.innerHTML = "";
+    data.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td class="py-2 px-4">${index + 1}</td>
+            <td class="py-2 px-4 user-name-cell">${item.userName}</td>
+            <td class="py-2 px-4">${item.hpAmount}</td>
+        `;
+        tableBody.appendChild(row);
     });
 }
 
 
+
+// Function to update pagination
 function updatePagination() {
-    currentPageElement.textContent = currentPage;
-    totalPagesElement.textContent = Math.ceil(tableRows.length / rowsPerPage);
-
+    const totalItems = currentTable === "top" ? topTableData.length : newTableData.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    totalPagesSpan.textContent = totalPages;
+    currentPage = Math.min(currentPage, totalPages); // Make sure current page is within bounds
+    currentPageSpan.textContent = currentPage;
     prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === Math.ceil(tableRows.length / rowsPerPage);
+    nextBtn.disabled = currentPage === totalPages;
 }
 
-prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        showPage(currentTableBody, currentPage);
-        updatePagination();
-    }
+// Event listeners
+topTableButton.addEventListener("click", () => {
+    currentTable = "top";
+    topTableContainer.style.display = "block";
+    newTableContainer.style.display = "none";
+    topTableButton.classList.add('bg-blue-500', 'text-white');
+    newTableButton.classList.remove('bg-blue-500', 'text-white');
+    currentPage = 1; // Reset page when switching tables
+    updatePagination();
+    populateTable(topTableBody, topTableData);
 });
 
-nextBtn.addEventListener('click', () => {
-    if (currentPage < Math.ceil(currentTableRows.length / rowsPerPage)) {
-        currentPage++;
-        showPage(currentTableBody, currentPage);
-        updatePagination();
-    }
+newTableButton.addEventListener("click", () => {
+    currentTable = "new";
+    topTableContainer.style.display = "none";
+    newTableContainer.style.display = "block";
+    newTableButton.classList.add('bg-blue-500', 'text-white');
+    topTableButton.classList.remove('bg-blue-500', 'text-white');
+    currentPage = 1; // Reset page when switching tables
+    updatePagination();
+    populateTable(newTableBody, newTableData);
 });
 
 
-showPage(currentPage);
-updatePagination();
 
 
+// For search
 
 
-// Api
+searchButton.addEventListener("click", searchUser);
 
+function searchUser() {
+    const searchTerm = searchInput.value.toLowerCase();
 
-const apiTableBody = document.getElementById('apiTableBody');
+    if (searchTerm.trim() === "") {
+        // Display "Please enter your user name" warning
+        displaySearchWarning("Please enter your user name");
+        return;
+    }
 
-// Function to fetch API data and populate the table
-async function fetchAndPopulateData() {
-    const apiUrl = 'https://api.hive-engine.com/rpc/contracts';
+    const data = currentTable === "top" ? topTableData : newTableData;
 
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0',
-                'Accept': 'application/json, text/plain, */*',
-                'Accept-Language': 'en-US,en;q=0.5',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Origin': 'https://he.dtools.dev',
-                'Connection': 'keep-alive',
-                'Referer': 'https://he.dtools.dev/',
-                'Sec-Fetch-Dest': 'empty',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Site': 'cross-site'
-            },
-            body: JSON.stringify({
-                'jsonrpc': '2.0',
-                'id': 1692187530638,
-                'method': 'find',
-                'params': {
-                    'contract': 'tokens',
-                    'table': 'balances',
-                    'query': {
-                        'symbol': 'SPS'
-                    },
-                    'offset': 0,
-                    'limit': 1000
-                }
-            })
-        });
+    let matchedRowIndex = -1;
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    for (let i = 0; i < data.length; i++) {
+        const userName = data[i].userName.toLowerCase();
+        if (userName.includes(searchTerm)) {
+            matchedRowIndex = i;
+            break;
         }
+    }
 
-        const data = await response.json();
-        const rows = data.result;
+    if (matchedRowIndex !== -1) {
+        const tableBody = currentTable === "top" ? topTableBody : newTableBody;
+        const rows = tableBody.querySelectorAll("tr");
+        
+        // Clear "matched" class from all rows
+        for (const row of rows) {
+            row.classList.remove("matched");
+        }
+        
+        // Apply "matched" class to the matched row
+        rows[matchedRowIndex % itemsPerPage].classList.add("matched");
+        
+        // Move matched row to the top of its parent
+        tableBody.insertBefore(rows[matchedRowIndex % itemsPerPage], tableBody.firstChild);
 
-        apiTableBody.innerHTML = ''; // Clear existing rows
-
-        // Populate the table with fetched data
-        rows.forEach((row, index) => {
-            const newRow = `
-                <tr>
-                    <td class="py-2 px-4">${index + 1}</td>
-                    <td class="py-2 px-4 user-name-cell">${row.user}</td>
-                    <td class="py-2 px-4">${row.amount}</td>
-                </tr>
-            `;
-
-            apiTableBody.insertAdjacentHTML('beforeend', newRow);
-        });
-
-    } catch (error) {
-        console.error('Error fetching API data:', error);
+        clearSearchWarning();
+        updatePagination();
+    } else {
+        displaySearchWarning("User not found!");
     }
 }
 
-// Call the function to fetch and populate data
-fetchAndPopulateData();
+
+  
+  
+  function displaySearchWarning(message) {
+    const warningElement = document.getElementById("searchWarning");
+    warningElement.textContent = message;
+    warningElement.style.display = "block";
+  }
+  
+  // Function to clear any search warnings
+  function clearSearchWarning() {
+    const warningElement = document.getElementById("searchWarning");
+    warningElement.style.display = "none";
+  }
+
+
+
+
+prevBtn.addEventListener("click", () => {
+    currentPage -= 1;
+    populateTableAndApplySearch();
+    updatePagination();
+});
+
+nextBtn.addEventListener("click", () => {
+    currentPage += 1;
+    populateTableAndApplySearch();
+    updatePagination();
+});
+
+
+function populateTableAndApplySearch() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const data = currentTable === "top" ? topTableData : newTableData;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedData = data.slice(startIndex, endIndex);
+    const filteredData = paginatedData.filter(item =>
+        item.userName.toLowerCase().includes(searchTerm)
+    );
+
+    if (currentTable === "top") {
+        populateTable(topTableBody, filteredData);
+    } else {
+        populateTable(newTableBody, filteredData);
+    }
+}
+
+
+// Function to update table and pagination based on the current state
+function updateTableAndPagination() {
+    populateTableAndApplySearch();
+    updatePagination();
+}
+
+// Initial setup
+topTableButton.addEventListener("click", () => {
+    currentTable = "top";
+    topTableContainer.style.display = "block";
+    newTableContainer.style.display = "none";
+    currentPage = 1; // Reset page when switching tables
+    updateTableAndPagination();
+});
+
+newTableButton.addEventListener("click", () => {
+    currentTable = "new";
+    topTableContainer.style.display = "none";
+    newTableContainer.style.display = "block";
+    currentPage = 1; // Reset page when switching tables
+    updateTableAndPagination();
+});
+
+updateTableAndPagination(); // Show initial table and pagination
+
+
+
+
+
+
+
+
 
