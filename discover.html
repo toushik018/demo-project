@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +14,12 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-        <script type="text/javascript">
-            $(function () {
-                $("#navbar").load("navbar.html");
-            });
-        </script>
-   
+    <script type="text/javascript">
+        $(function () {
+            $("#navbar").load("navbar.html");
+        });
+    </script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -26,69 +27,74 @@
 
     <h1>This is Discover page</h1>
 
-  <section>
-    <div class="lg:w-4/5 w-full mx-auto mt-20">
-        <div class="mx-auto p-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-            <!-- Card 1 -->
-            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-                <div class="flex items-center p-4">
-                    <img class="w-10 h-10 rounded-full mr-2" src="user1.jpg" alt="User 1">
-                    <h3 class="text-lg font-semibold">User Name 1</h3>
+    <section>
+        <div class="lg:w-4/5 w-full mx-auto mt-20">
+            <div class="mx-auto p-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center p-4">
+                        <img class="w-10 h-10 rounded-full mr-2 avatar-image" id="avatar-image-1" src="user1.jpg" alt="User 1">
+                        <h3 class="text-lg font-semibold user-name"> </h3>
+                    </div>
+                    <img class="w-full h-40 object-cover" src="image1.jpg" alt="Image 1">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold mb-2">Card Title 1</h3>
+                    </div>
                 </div>
-                <img class="w-full h-40 object-cover" src="image1.jpg" alt="Image 1">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold mb-2">Card Title 1</h3>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center p-4">
+                        <img class="w-10 h-10 rounded-full mr-2 avatar-image" id="avatar-image-2" src="user2.jpg" alt="User 2">
+                        <h3 class="text-lg font-semibold user-name"> </h3>
+                    </div>
+                    <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
+                    </div>
                 </div>
-            </div>
-    
-            <!-- Card 2 -->
-            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-                <div class="flex items-center p-4">
-                    <img class="w-10 h-10 rounded-full mr-2" src="user2.jpg" alt="User 2">
-                    <h3 class="text-lg font-semibold">User Name 2</h3>
+
+                <div
+                    class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center p-4">
+                        <img class="w-10 h-10 rounded-full mr-2 avatar-image" id="avatar-image-3" src="user2.jpg" alt="User 2">
+                        <h3 class="text-lg font-semibold user-name"> </h3>
+                    </div>
+                    <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
+                    </div>
                 </div>
-                <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
+
+                <div
+                    class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex items-center p-4">
+                        <img class="w-10 h-10 rounded-full mr-2 avatar-image" id="avatar-image-4" src="user2.jpg" alt="User 2">
+                        <h3 class="text-lg font-semibold user-name"> </h3>
+                    </div>
+                    <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
+                    </div>
                 </div>
-            </div>
-    
-            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-                <div class="flex items-center p-4">
-                    <img class="w-10 h-10 rounded-full mr-2" src="user2.jpg" alt="User 2">
-                    <h3 class="text-lg font-semibold">User Name 2</h3>
-                </div>
-                <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
-                </div>
+               
+
             </div>
 
-            <div class="bg-white rounded-md border-2 border-gray-200 overflow-hidden transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-                <div class="flex items-center p-4">
-                    <img class="w-10 h-10 rounded-full mr-2" src="user2.jpg" alt="User 2">
-                    <h3 class="text-lg font-semibold">User Name 2</h3>
-                </div>
-                <img class="w-full h-40 object-cover" src="image2.jpg" alt="Image 2">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold mb-2">Card Title 2</h3>
-                </div>
+            <hr class="border-2 border-gray-200 mt-10 mb-10">
+
+            <!-- Single Text Card -->
+            <div
+                class="bg-white rounded-md p-6 transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg text-center border-2 border-gray-200 mb-10">
+                <p class="text-lg font-semibold mb-2">Single Text Card</p>
+                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus.</p>
             </div>
-            <!-- ... -->
-    
         </div>
-    
-        <hr class="border-2 border-gray-200 mt-10 mb-10">
-    
-        <!-- Single Text Card -->
-        <div class="bg-white rounded-md p-6 transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg text-center border-2 border-gray-200 mb-10">
-            <p class="text-lg font-semibold mb-2">Single Text Card</p>
-            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus.</p>
-        </div>
-    </div>
-  </section>
-    
-    
-    
+    </section>
+
+<script src="discover.js"></script>
+
 </body>
+
 </html>

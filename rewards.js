@@ -24,20 +24,20 @@ totalButton.addEventListener('click', () => {
 
 // sample data
 const sampleData = [
-    {'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12' },
-    {'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12'},
-    {'username': 'sourov', 'token': 'dec', 'amount': 2000.0, 'date': '12/12/12'},
-    {'username': 'john', 'token': 'btc', 'amount': 1500.0, 'date': '11/10/21'},
-    {'username': 'jane', 'token': 'eth', 'amount': 800.0, 'date': '10/09/20'},
-    {'username': 'alice', 'token': 'bnb', 'amount': 500.0, 'date': '09/08/19'},
-    {'username': 'bob', 'token': 'xrp', 'amount': 1200.0, 'date': '08/07/18'},
-    {'username': 'david', 'token': 'ltc', 'amount': 900.0, 'date': '07/06/17'},
-    {'username': 'emily', 'token': 'doge', 'amount': 700.0, 'date': '06/05/16'},
-    {'username': 'frank', 'token': 'ada', 'amount': 1100.0, 'date': '05/04/15'},
-    {'username': 'grace', 'token': 'dot', 'amount': 1800.0, 'date': '04/03/14'},
-    {'dec': 2000.0, 'sps': 1000.0}
-
+    { 'id': 1, 'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12' },
+    { 'id': 2, 'username': 'sourov', 'token': 'dec', 'amount': 1000.0, 'date': '12/12/12' },
+    { 'id': 3, 'username': 'sourov', 'token': 'dec', 'amount': 2000.0, 'date': '12/12/12' },
+    { 'id': 4, 'username': 'john', 'token': 'btc', 'amount': 1500.0, 'date': '11/10/21' },
+    { 'id': 5, 'username': 'jane', 'token': 'eth', 'amount': 800.0, 'date': '10/09/20' },
+    { 'id': 6, 'username': 'alice', 'token': 'bnb', 'amount': 500.0, 'date': '09/08/19' },
+    { 'id': 7, 'username': 'bob', 'token': 'xrp', 'amount': 1200.0, 'date': '08/07/18' },
+    { 'id': 8, 'username': 'david', 'token': 'ltc', 'amount': 900.0, 'date': '07/06/17' },
+    { 'id': 9, 'username': 'emily', 'token': 'doge', 'amount': 700.0, 'date': '06/05/16' },
+    { 'id': 10, 'username': 'frank', 'token': 'ada', 'amount': 1100.0, 'date': '05/04/15' },
+    { 'id': 11, 'username': 'grace', 'token': 'dot', 'amount': 1800.0, 'date': '04/03/14' },
+    { 'id': 12, 'dec': 2000.0, 'sps': 1000.0 }
 ];
+
 
 
 function populateTable(data) {
@@ -47,6 +47,7 @@ function populateTable(data) {
     data.forEach((item) => {
         const row = document.createElement('tr');
         row.innerHTML = `
+            <td class="py-2 px-4">${item.id}</td>
             <td class="py-2 px-4">${item.username}</td>
             <td class="py-2 px-4">${item.token}</td>
             <td class="py-2 px-4">${item.amount}</td>
