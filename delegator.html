@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link href="richlistLoader.css" rel="stylesheet" />
 
     <script type="text/javascript">
         $(function () {
@@ -28,7 +29,7 @@
 
         tr:not(.matched):nth-child(even) td {
             background-color: #f3f4f6;
-            
+
         }
 
         tr:not(.matched):nth-child(odd) td {
@@ -51,7 +52,7 @@
 
     <h4 id="emptySearchWarning" class="text-md text-red-500 text-center hidden">Please enter your user name.</h4>
     <h4 id="noResultsWarning" class="text-md text-red-500 text-center hidden">No matching results found.</h4>
-    
+
 
 
 
@@ -59,6 +60,13 @@
     <!-- Table -->
 
     <div class="px-4">
+
+        <div id="spinner" class="fixed inset-0 z-50 hidden">
+            <div class="bg-gray-500 bg-opacity-40 flex items-center justify-center h-full">
+                <span class="loader"></span>
+            </div>
+        </div>
+
         <div class="bg-white w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
             <h3 class="text-2xl text-center font-semibold">Delegator Info</h3>
             <div class="mx-auto flex justify-start items-center py-2 gap-4">
@@ -85,7 +93,7 @@
                         </thead>
                         <tbody id="topTableBody" id="apiTableBody">
                             <!-- Table rows will be dynamically added here -->
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -106,7 +114,7 @@
                         </thead>
                         <tbody id="newTableBody">
                             <!-- Table rows will be dynamically added here -->
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -133,7 +141,7 @@
 
     <script src="delegator2.js"></script>
 
-  
+
 
 </body>
 

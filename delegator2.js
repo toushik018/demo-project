@@ -1,3 +1,5 @@
+const spinner = document.getElementById('spinner');
+
 const hiveKeychain = 'https://api.hive-keychain.com/hive/delegators/bdvoter';
 
 // Function to populate table rows
@@ -43,6 +45,9 @@ let initialDataLoaded = false;
   
 // Function to fetch and populate the tables
 function fetchDataAndPopulateTable() {
+
+    spinner.style.display = "block";
+
     fetch(hiveKeychain)
       .then(res => res.json())
       .then(data => {
@@ -62,6 +67,14 @@ function fetchDataAndPopulateTable() {
         updatePagination(currentTableData.length);
   
         initialDataLoaded = true; // Mark the initial data as loaded
+
+        // Hide the spinner after data is loaded
+        spinner.style.display = "none";
+      })
+      .catch(error => {
+        // Handle error and hide the spinner
+        console.error("Error loading data:", error);
+        spinner.style.display = "none";
       });
   }
   // Call the function to fetch and populate the top table initially
