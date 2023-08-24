@@ -35,7 +35,7 @@ const sampleData = [
     { 'id': 9, 'username': 'emily', 'token': 'doge', 'amount': 700.0, 'date': '06/05/16' },
     { 'id': 10, 'username': 'frank', 'token': 'ada', 'amount': 1100.0, 'date': '05/04/15' },
     { 'id': 11, 'username': 'grace', 'token': 'dot', 'amount': 1800.0, 'date': '04/03/14' },
-    { 'id': 12, 'dec': 2000.0, 'sps': 1000.0 }
+    { 'id': 12, 'dec': 3000.0, 'sps': 1000.0 }
 ];
 
 
@@ -58,7 +58,21 @@ function populateTable(data) {
 
     // Update tableRows after populating the table
     tableRows = document.querySelectorAll('tbody tr');
+
+    // Populate the stats container with data from the last object
+    const lastObject = data[data.length - 1];
+    const totalContainer = document.getElementById('totalContainer');
+    totalContainer.innerHTML = `
+         <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
+             <h2 class="text-lg font-semibold mb-2">Total Stats</h2>
+             <p>dec: ${lastObject.dec}</p>
+             <p>sps: ${lastObject.sps}</p>
+         </div>
+     `;
+
 }
+
+
 
 // For rewards
 
