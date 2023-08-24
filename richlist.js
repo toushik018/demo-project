@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             },
             body: JSON.stringify({
                 'jsonrpc': '2.0',
-                'id': 1692187530638,
+                'id': 1,
                 'method': 'find',
                 'params': {
                     'contract': 'tokens',
                     'table': 'balances',
                     'query': {
-                        'symbol': 'SPS'
+                        'symbol': 'WORKERBEE'
                     },
                     'offset': offset,
                     'limit': 1000

@@ -11,7 +11,7 @@ function populateTable(tableBody, data) {
         <td class="px-4 py-2">${index + 1}</td>
         <td class="px-4 py-2">${row.delegator}</td>
         <td class="px-4 py-2">${row.vesting_shares.toFixed(3)}</td>
-        <td class="px-4 py-2">${row.delegation_date}</td>
+        <td class="px-4 py-2">${row.delegation_date.split('T')[0]}</td>
       `;
     });
   }
