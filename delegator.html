@@ -49,7 +49,10 @@
             class="bg-gray-200 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
     </div>
 
-    <h4 id="searchWarning" class="text-md text-red-500 text-center hidden"></h4>
+    <h4 id="emptySearchWarning" class="text-md text-red-500 text-center hidden">Please enter your user name.</h4>
+    <h4 id="noResultsWarning" class="text-md text-red-500 text-center hidden">No matching results found.</h4>
+    
+
 
 
 
@@ -74,33 +77,15 @@
                     <table class="table-auto w-full">
                         <thead class="rounded-lg">
                             <tr class="bg-gray-200">
-                                <th class="py-2 px-4 text-left">SL</th>
-                                <th class="py-2 px-4 text-left">User name</th>
-                                <th class="py-2 px-4 text-left">HP Amount</th>
+                                <th class="py-2 px-4 text-left uppercase">SL</th>
+                                <th class="py-2 px-4 text-left uppercase">User name</th>
+                                <th class="py-2 px-4 text-left uppercase">Vesting Amount</th>
+                                <th class="py-2 px-4 text-left uppercase">Date</th>
                             </tr>
                         </thead>
                         <tbody id="topTableBody" id="apiTableBody">
                             <!-- Table rows will be dynamically added here -->
-                            <tr data-sno="1" data-original-sno="1">
-                                <td class="py-2 px-4">1</td>
-                                <td class="py-2 px-4 user-name-cell">User1</td>
-                                <td class="py-2 px-4">$100</td>
-                            </tr>
-                            <tr data-sno="2" data-original-sno="2">
-                                <td class="py-2 px-4">2</td>
-                                <td class="py-2 px-4 user-name-cell">User2</td>
-                                <td class="py-2 px-4">$200</td>
-                            </tr>
-                            <tr data-sno="3" data-original-sno="3">
-                                <td class="py-2 px-4">3</td>
-                                <td class="py-2 px-4 user-name-cell">User3</td>
-                                <td class="py-2 px-4">$150</td>
-                            </tr>
-                            <tr data-sno="4" data-original-sno="4">
-                                <td class="py-2 px-4">4</td>
-                                <td class="py-2 px-4 user-name-cell">User4</td>
-                                <td class="py-2 px-4">$150</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -113,28 +98,15 @@
                     <table class="table-auto w-full">
                         <thead class="rounded-lg">
                             <tr class="bg-gray-200">
-                                <th class="py-2 px-4 text-left">SL</th>
-                                <th class="py-2 px-4 text-left">User Name</th>
-                                <th class="py-2 px-4 text-left">Hp Amount</th>
+                                <th class="py-2 px-4 text-left uppercase">SL</th>
+                                <th class="py-2 px-4 text-left uppercase">User Name</th>
+                                <th class="py-2 px-4 text-left uppercase">Vesting Amount</th>
+                                <th class="py-2 px-4 text-left uppercase">Date</th>
                             </tr>
                         </thead>
                         <tbody id="newTableBody">
                             <!-- Table rows will be dynamically added here -->
-                            <tr data-id="1" data-original-id="1">
-                                <td class="py-2 px-4">1</td>
-                                <td class="py-2 px-4 user-name-cell">User1</td>
-                                <td class="py-2 px-4">$10</td>
-                            </tr>
-                            <tr data-id="2" data-original-id="2">
-                                <td class="py-2 px-4">2</td>
-                                <td class="py-2 px-4 user-name-cell">User2</td>
-                                <td class="py-2 px-4">$20</td>
-                            </tr>
-                            <tr data-id="3" data-original-id="3">
-                                <td class="py-2 px-4">3</td>
-                                <td class="py-2 px-4 user-name-cell">User3</td>
-                                <td class="py-2 px-4">$15</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -159,14 +131,7 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-    <script src="delegator.js"></script>
+    <script src="delegator2.js"></script>
 
   
 

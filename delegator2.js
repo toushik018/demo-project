@@ -1,118 +1,175 @@
-console.log("Script loaded and executed");
+const hiveKeychain = 'https://api.hive-keychain.com/hive/delegators/bdvoter';
 
-
-// Define the number of rows per page and initial current page
-const rowsPerPage = 3;
-let currentPage = 1;
-
-// Select all table rows
-const tableRows = document.querySelectorAll('tbody tr');
-
-// Get pagination buttons and current page/total pages elements
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const currentPageElement = document.getElementById('currentPage');
-const totalPagesElement = document.getElementById('totalPages');
-
-// Show the specified page
-function showPage(pageNumber) {
-    const startIdx = (pageNumber - 1) * rowsPerPage;
-    const endIdx = startIdx + rowsPerPage;
-
-    tableRows.forEach((row, index) => {
-        row.style.display = (index >= startIdx && index < endIdx) ? 'table-row' : 'none';
+// Function to populate table rows
+function populateTable(tableBody, data) {
+    tableBody.innerHTML = "";
+    data.forEach((row, index) => {
+      const newRow = tableBody.insertRow();
+      newRow.innerHTML = `
+        <td class="px-4 py-2">${index + 1}</td>
+        <td class="px-4 py-2">${row.delegator}</td>
+        <td class="px-4 py-2">${row.vesting_shares.toFixed(3)}</td>
+        <td class="px-4 py-2">${row.delegation_date}</td>
+      `;
     });
-}
+  }
+  
+  
+  // Pagination variables
+  let currentPage = 1;
+  let currentTableData = [];
 
-// Update the pagination buttons and current page/total pages elements
-function updatePagination() {
-    currentPageElement.textContent = currentPage;
-    totalPagesElement.textContent = Math.ceil(tableRows.length / rowsPerPage);
 
+const rowsPerPage = 10; // Define the number of rows per page
+
+// Function to update pagination UI
+function updatePagination(totalRows) {
+    const totalPages = Math.ceil(totalRows / rowsPerPage);
+    document.getElementById("currentPage").textContent = currentPage;
+    document.getElementById("totalPages").textContent = totalPages;
+  
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+  
     prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === Math.ceil(tableRows.length / rowsPerPage);
+    nextBtn.disabled = currentPage === totalPages;
+  }
+
+  let sortedDataTop = [];
+  let sortedDataNew = [];
+
+  // Keep track of the initially loaded data
+let initialDataLoaded = false;
+  
+// Function to fetch and populate the tables
+function fetchDataAndPopulateTable() {
+    fetch(hiveKeychain)
+      .then(res => res.json())
+      .then(data => {
+        const filteredData = data.filter(entry => entry.vesting_shares > 0);
+  
+        sortedDataTop = filteredData.slice().sort((a, b) => b.vesting_shares - a.vesting_shares);
+        sortedDataNew = filteredData.slice().sort((a, b) => new Date(b.delegation_date) - new Date(a.delegation_date));
+  
+        currentTableData = sortedDataTop; // Set initial currentTableData to sortedDataTop
+  
+        // Populate the table with the first set of rowsPerPage data
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const initialDisplayData = currentTableData.slice(startIndex, endIndex);
+        populateTable(document.getElementById("topTableBody"), initialDisplayData);
+  
+        updatePagination(currentTableData.length);
+  
+        initialDataLoaded = true; // Mark the initial data as loaded
+      });
+  }
+  // Call the function to fetch and populate the top table initially
+  fetchDataAndPopulateTable();
+
+
+// Function to switch table data
+function switchTable(tableData) {
+    currentTableData = tableData;
+    currentPage = 1;
+    updateTable();
+    updatePagination(currentTableData.length);
 }
 
-// Attach event listeners to previous and next buttons
-prevBtn.addEventListener('click', () => {
+// Handle table buttons
+document.getElementById("topTableButton").addEventListener("click", () => {
+    if (initialDataLoaded) {
+      currentTableData = sortedDataTop;
+      currentPage = 1;
+      topTableButton.classList.add('bg-blue-500', 'text-white');
+      newTableButton.classList.remove('bg-blue-500', 'text-white');
+  
+      // Update the table with the first set of rowsPerPage data
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const endIndex = startIndex + rowsPerPage;
+      const initialDisplayData = currentTableData.slice(startIndex, endIndex);
+      populateTable(document.getElementById("topTableBody"), initialDisplayData);
+  
+      updatePagination(currentTableData.length);
+    }
+  });
+    
+  document.getElementById("newTableButton").addEventListener("click", () => {
+    if (initialDataLoaded) {
+      currentTableData = sortedDataNew;
+      currentPage = 1;
+      newTableButton.classList.add('bg-blue-500', 'text-white');
+      topTableButton.classList.remove('bg-blue-500', 'text-white');
+  
+      // Update the table with the first set of rowsPerPage data
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const endIndex = startIndex + rowsPerPage;
+      const initialDisplayData = currentTableData.slice(startIndex, endIndex);
+      populateTable(document.getElementById("topTableBody"), initialDisplayData);
+  
+      updatePagination(currentTableData.length);
+    }
+  });
+
+
+
+// Handle search
+document.getElementById("searchButton").addEventListener("click", () => {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    
+    // Check for empty search input
+    if (!searchInput) {
+        document.getElementById("emptySearchWarning").classList.remove("hidden");
+        document.getElementById("noResultsWarning").classList.add("hidden");
+        return;
+    }
+
+    const matchedRows = currentTableData.filter((row) =>
+        row.delegator.toLowerCase().includes(searchInput)
+    );
+
+    const tableBody = document.getElementById("topTableBody"); // Assuming you are using top table for search results
+    populateTable(tableBody, matchedRows);
+
+    if (matchedRows.length === 0) {
+        document.getElementById("noResultsWarning").classList.remove("hidden");
+        document.getElementById("emptySearchWarning").classList.add("hidden");
+    } else {
+        document.getElementById("noResultsWarning").classList.add("hidden");
+        document.getElementById("emptySearchWarning").classList.add("hidden");
+    }
+
+    currentPage = 1;
+    updatePagination(matchedRows.length);
+});
+
+
+
+// Handle pagination
+document.getElementById("prevBtn").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
-        showPage(currentPage);
-        updatePagination();
+        updateTable();
     }
 });
 
-nextBtn.addEventListener('click', () => {
-    if (currentPage < Math.ceil(tableRows.length / rowsPerPage)) {
+document.getElementById("nextBtn").addEventListener("click", () => {
+    const totalPages = Math.ceil(currentTableData.length / rowsPerPage);
+    if (currentPage < totalPages) {
         currentPage++;
-        showPage(currentPage);
-        updatePagination();
+        updateTable();
     }
 });
 
-// Show the initial page and update pagination
-showPage(currentPage);
-updatePagination();
-
-// Search functionality
-document.getElementById("searchButton").addEventListener("click", searchUser);
-
-function searchUser() {
-    var searchValue = document.getElementById("searchInput").value.trim().toLowerCase();
-    var rows = document.querySelectorAll("tbody tr");
-    var found = false;
-
-    for (var i = 0; i < rows.length; i++) {
-        var userName = rows[i].querySelector(".user-name-cell").textContent.trim().toLowerCase();
-        if (userName === searchValue) {
-            rows[i].classList.add("matched");
-            rows[i].parentNode.prepend(rows[i]);
-            found = true;
-        } else {
-            rows[i].classList.remove("matched");
-        }
-    }
-
-    if (found) {
-        // Find and display the page containing the matching user
-        for (var page = 1; page <= Math.ceil(rows.length / rowsPerPage); page++) {
-            var startIdx = (page - 1) * rowsPerPage;
-            var endIdx = startIdx + rowsPerPage;
-            var matchedRow = Array.from(rows).find((row, index) => index >= startIdx && index < endIdx && row.classList.contains("matched"));
-            if (matchedRow) {
-                currentPage = page;
-                showPage(currentPage);
-                updatePagination();
-                break;
-            }
-        }
-    } else {
-        // If not found, reset pagination and display the first page
-        currentPage = 1;
-        showPage(currentPage);
-        updatePagination();
-    }
+// Function to update the displayed table
+function updateTable() {
+    const tableBody = document.getElementById("topTableBody"); // Assuming you are using top table for pagination
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const displayedData = currentTableData.slice(startIndex, endIndex);
+    populateTable(tableBody, displayedData);
+    updatePagination(currentTableData.length);
 }
 
-// Table toggling functionality
-const topTableButton = document.getElementById('topTableButton');
-const newTableButton = document.getElementById('newTableButton');
-const topTableContainer = document.getElementById('topTableContainer');
-const newTableContainer = document.getElementById('newTableContainer');
-
-topTableButton.addEventListener('click', () => {
-    topTableContainer.style.display = 'block';
-    newTableContainer.style.display = 'none';
-    currentPage = 1; // Reset current page when toggling tables
-    showPage(currentPage);
-    updatePagination();
-});
-
-newTableButton.addEventListener('click', () => {
-    topTableContainer.style.display = 'none';
-    newTableContainer.style.display = 'block';
-    currentPage = 1; // Reset current page when toggling tables
-    showPage(currentPage);
-    updatePagination();
-});
-
+// Initial table setup
+updateTable();

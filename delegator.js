@@ -21,24 +21,25 @@ let currentTable = "top";
 let currentPage = 1;
 const itemsPerPage = 10; // Number of items to display per page
 
-// Fetch data from API and populate tables
-// Fetch data from API and populate tables
+
 // Fetch data from API and populate tables
 const hiveKeychain = 'https://api.hive-keychain.com/hive/delegators/bdvoter';
 fetch(hiveKeychain)
     .then(res => res.json())
     .then(data => {
         const nonZeroVestingData = data.filter(item => item.vesting_shares !== 0);
-        
+
         topTableData = nonZeroVestingData.map(item => ({
             userName: item.delegator,
-            hpAmount: item.vesting_shares
+            hpAmount: item.vesting_shares,
+            date: item.delegation_date
         }));
         newTableData = nonZeroVestingData.map(item => ({
             userName: item.delegator,
-            hpAmount: item.vesting_shares
+            hpAmount: item.vesting_shares,
+            date: item.delegation_date
         }));
-        
+
         // Now that the data is processed, update the table and pagination
         updateTableAndPagination();
     })
@@ -55,6 +56,7 @@ function populateTable(tableBody, data) {
             <td class="py-2 px-4">${index + 1}</td>
             <td class="py-2 px-4 user-name-cell">${item.userName}</td>
             <td class="py-2 px-4">${item.hpAmount}</td>
+            <td class="py-2 px-4">${item.date}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -128,15 +130,15 @@ function searchUser() {
     if (matchedRowIndex !== -1) {
         const tableBody = currentTable === "top" ? topTableBody : newTableBody;
         const rows = tableBody.querySelectorAll("tr");
-        
+
         // Clear "matched" class from all rows
         for (const row of rows) {
             row.classList.remove("matched");
         }
-        
+
         // Apply "matched" class to the matched row
         rows[matchedRowIndex % itemsPerPage].classList.add("matched");
-        
+
         // Move matched row to the top of its parent
         tableBody.insertBefore(rows[matchedRowIndex % itemsPerPage], tableBody.firstChild);
 
@@ -148,19 +150,19 @@ function searchUser() {
 }
 
 
-  
-  
-  function displaySearchWarning(message) {
+
+
+function displaySearchWarning(message) {
     const warningElement = document.getElementById("searchWarning");
     warningElement.textContent = message;
     warningElement.style.display = "block";
-  }
-  
-  // Function to clear any search warnings
-  function clearSearchWarning() {
+}
+
+// Function to clear any search warnings
+function clearSearchWarning() {
     const warningElement = document.getElementById("searchWarning");
     warningElement.style.display = "none";
-  }
+}
 
 
 
