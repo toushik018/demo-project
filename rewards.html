@@ -20,9 +20,15 @@
         });
     </script>
 
+<script type="text/javascript">
+    $(function () {
+      $("#footer").load("footer.html");
+    });
+  </script>
+
 <style>
     tr.matched {
-        background-color: greenyellow;
+        background-color: rgb(138, 214, 23);
         font-weight: bolder;
     }
     tr:not(.matched):nth-child(even) td {
@@ -78,24 +84,7 @@
                     </thead>
                     <tbody id="tableBody">
                         <!-- Table rows will be dynamically added here -->
-                        <tr data-sno="1" data-original-sno="1">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4">Token A</td>
-                            <td class="py-2 px-4">$100</td>
-                            <td class="py-2 px-4">10 Aug 2023</td>
-                        </tr>
-                        <tr data-sno="2" data-original-sno="2">
-                            <td class="py-2 px-4">2</td>
-                            <td class="py-2 px-4">Token B</td>
-                            <td class="py-2 px-4">$200</td>
-                            <td class="py-2 px-4">11 Aug 2023</td>
-                        </tr>
-                        <tr data-sno="3" data-original-sno="3">
-                            <td class="py-2 px-4">3</td>
-                            <td class="py-2 px-4">Token C</td>
-                            <td class="py-2 px-4">$150</td>
-                            <td class="py-2 px-4">12 Aug 2023</td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>
@@ -128,11 +117,15 @@
     <div id="totalContainer" class="hidden bg-white lg:w-3/5 w-full mx-auto border-t-2 ">
         <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
             <h2 class="text-lg font-semibold mb-2">Total Stats</h2>
-            <p>Total Amount: $500</p>
-            <p>Total Tokens: 100</p>
+            <p>Total Amount: </p>
+            <p>Total Tokens: </p>
         </div>
     </div>
    </div>
+
+
+   <footer id="footer"> </footer>
+
 
         <script src="rewards.js"></script>
 </body>

@@ -23,6 +23,11 @@
             $("#navbar").load("navbar.html");
         });
     </script>
+    <script type="text/javascript">
+        $(function () {
+          $("#footer").load("footer.html");
+        });
+      </script>
 
 <style>
     tr.matched {
@@ -49,7 +54,7 @@
         <input id="searchInput" type="text" placeholder="Search..."
             class="py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
         <button id="searchButton"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
+            class="bg-gray-300 hover:bg-gray-400 py-2 duration-300 px-4 rounded-md focus:outline-none">Search</button>
     </div>
 
 
@@ -111,7 +116,7 @@
             </div>
         </div>
     </div>
-
+    <footer id="footer"> </footer>
 
     <!-- Initialize tippy.js for pagination tooltips -->
     <!-- <script>

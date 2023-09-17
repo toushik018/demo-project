@@ -1,27 +1,30 @@
+/* Basic button style */
 .button {
     padding: 10px;
     text-align: center;
-    color: #000;
+    color: #fff; /* Text color is white */
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
     display: inline-block;
     border-radius: 99px;
+    background-color: #cf3030; /* Deep green background color */
 }
 
-.button-style{
+/* Button style with a hover effect */
+.button-style {
     color: #fff;
-    border: 3px solid #3c63e6;
-    background-image: -webkit-linear-gradient(30deg, #3c63e6 50%, transparent 50%);
-    background-image: linear-gradient(30deg, #18338d 50%, transparent 50%);
+    border: 3px solid #005042; /* Dark green border */
+    background-image: -webkit-linear-gradient(30deg, #005042 50%, transparent 50%);
+    background-image: linear-gradient(30deg, #004235 50%, transparent 50%); /* Dark green gradient */
     background-size: 500px;
     background-repeat: no-repeat;
     background-position: 0%;
-    -webkit-transition: background 300ms ease-in-out;
-    transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out, color 300ms ease-in-out;
 }
 
+/* Button hover effect */
 .button-style:hover {
     background-position: 100%;
-    color: #3c63e6;
+    color: #ffffff; /* Dark green text color on hover */
 }
