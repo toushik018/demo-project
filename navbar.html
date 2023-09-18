@@ -8,7 +8,19 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="navbar.css">
-
+    <style>
+        /* Add CSS transitions */
+        #mobileMenu {
+          opacity: 0;
+          transform: translateY(-10px);
+          transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+    
+        .menu-open #mobileMenu {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      </style>
 
 </head>
 
@@ -39,7 +51,7 @@
 
             <div id="navLinks" class="lg:flex space-x-10 mx-auto hidden md:block">
                 <!-- Navigation links (desktop) -->
-                <ul class="flex space-x-10">
+                <ul class="flex md:space-x-5 lg:space-x-10">
                     <li><a href="index.html" class="hover:text-gray-900 hover:bg-gray-300 p-2 rounded-lg duration-300 transition-all">Home</a></li>
                     <li class="relative group dropdown">
                         <a href="#" class="hover:text-gray-900 hover:bg-gray-300 p-2 rounded-lg duration-300 transition-all dropbtn" id="productBtn">Invest <i
@@ -107,21 +119,23 @@
 
     <script>
         document.getElementById("menuBtn").addEventListener("click", function () {
-            const mobileMenu = document.getElementById("mobileMenu");
-            mobileMenu.classList.remove("hidden");
-            mobileMenu.classList.remove("opacity-0", "translate-y-[-10px]");
-
+          const mobileMenu = document.getElementById("mobileMenu");
+          mobileMenu.classList.remove("hidden");
+    
+          setTimeout(function () {
             document.body.classList.add("menu-open");
+          }, 10);
         });
-
+    
         document.getElementById("closeBtn").addEventListener("click", function () {
-            const mobileMenu = document.getElementById("mobileMenu");
-            mobileMenu.classList.add("opacity-0", "translate-y-[-10px]");
+          const mobileMenu = document.getElementById("mobileMenu");
+          document.body.classList.remove("menu-open");
+    
+          setTimeout(function () {
             mobileMenu.classList.add("hidden");
-
-            document.body.classList.remove("menu-open");
+          }, 300);
         });
-    </script>
+      </script>
 </body>
 
 </html>
