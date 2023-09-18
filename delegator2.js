@@ -2,20 +2,25 @@ const spinner = document.getElementById('spinner');
 
 const hiveKeychain = 'https://api.hive-keychain.com/hive/delegators/bdvoter';
 let multiplierValue = 0.0005680694363369867;  //http://127.0.0.1:8000/api/hpconverter_constant
+
 // Function to populate table rows
 function populateTable(tableBody, data) {
-
   tableBody.innerHTML = "";
+  const startIndex = (currentPage - 1) * rowsPerPage;
+
   data.forEach((row, index) => {
     const vestingShares = row.vesting_shares;
-  const multipliedValue = vestingShares * multiplierValue;
+    const multipliedValue = vestingShares * multiplierValue;
     const newRow = tableBody.insertRow();
+
+    const serialNumber = startIndex + index + 1;
+
     newRow.innerHTML = `
-        <td class="px-4 py-2">${index + 1}</td>
-        <td class="px-4 py-2">${row.delegator}</td>
-        <td class="px-4 py-2">${multipliedValue.toFixed(3)}</td>
-        <td class="px-4 py-2">${row.delegation_date.split('T')[0]}</td>
-      `;
+      <td class="px-4 py-2">${serialNumber}</td>
+      <td class="px-4 py-2">${row.delegator}</td>
+      <td class="px-4 py-2">${multipliedValue.toFixed(3)}</td>
+      <td class="px-4 py-2">${row.delegation_date.split('T')[0]}</td>
+    `;
   });
 }
 
