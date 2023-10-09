@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home</title>
   
-  <link href="output.css" rel="stylesheet" />
+  <link href="dist/output.css" rel="stylesheet" />
   <link href="button.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 
     <div class="details duration-300 border-2 border-white card mt-8 lg:mt-0">
       <h2 class="text-2xl font-semibold uppercase text-center py-4 text-gray-700">
-        Total holdings Total
+        Total holdings 
       </h2>
 
       <hr class="w-4/5 mx-auto border-t-2 border-gray-400 font-bold" />
@@ -110,31 +110,6 @@
 
   <!--  -->
 
-  <script>
-    document.getElementById("menuBtn").addEventListener("click", function () {
-      document.getElementById("mobileMenu").classList.remove("hidden");
-    });
-
-    document
-      .getElementById("closeBtn")
-      .addEventListener("click", function () {
-        document.getElementById("mobileMenu").classList.add("hidden");
-      });
-
-    // Toggle product dropdown on click (mobile)
-    document
-      .getElementById("productBtnMobile")
-      .addEventListener("click", function () {
-        document
-          .getElementById("productDropdownMobile")
-          .classList.toggle("hidden");
-      });
-    document
-      .getElementById("productBtn")
-      .addEventListener("click", function () {
-        document.getElementById("productDropdown").classList.toggle("hidden");
-      });
-  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="main.js"></script>
