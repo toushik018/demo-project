@@ -3,10 +3,8 @@
   }
   
   .single-box {
-    border: 1px solid #ddd;
     border-radius: 20px;
     overflow: hidden;
-    background-color: #fff;
   }
   
   .info-area {
@@ -80,11 +78,11 @@
     margin: 0 6px;
     text-align: center;
     border-radius: 50%;
-    background-color: #262626;
+    background-color: #e76363;
   }
   
   .team-slider .owl-dot.active {
-    background-color: coral;
+    background-color: rgb(247, 40, 3);
   }
   
 /* .move-animation {

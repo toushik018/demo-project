@@ -21,8 +21,16 @@ function populateTable(tableBody, data) {
       <td class="px-4 py-2">${multipliedValue.toFixed(3)}</td>
       <td class="px-4 py-2">${row.delegation_date.split('T')[0]}</td>
     `;
+
+    // Apply alternating row background colors
+    if (index % 2 === 0) {
+      newRow.classList.add('bg-gray-200', 'dark:bg-gray-700');
+    } else {
+      newRow.classList.add('bg-white', 'dark:bg-gray-600');
+    }
   });
 }
+
 
 
 // Pagination variables
@@ -103,8 +111,8 @@ document.getElementById("topTableButton").addEventListener("click", () => {
   if (initialDataLoaded) {
     currentTableData = sortedDataTop;
     currentPage = 1;
-    topTableButton.classList.add('bg-blue-500', 'text-white');
-    newTableButton.classList.remove('bg-blue-500', 'text-white');
+    topTableButton.classList.add('bg-green-500', 'text-white', 'dark:bg-green-800');
+    newTableButton.classList.remove('bg-green-500', 'text-white', 'dark:bg-green-800');
 
     // Update the table with the first set of rowsPerPage data
     const startIndex = (currentPage - 1) * rowsPerPage;
@@ -120,8 +128,8 @@ document.getElementById("newTableButton").addEventListener("click", () => {
   if (initialDataLoaded) {
     currentTableData = sortedDataNew;
     currentPage = 1;
-    newTableButton.classList.add('bg-blue-500', 'text-white');
-    topTableButton.classList.remove('bg-blue-500', 'text-white');
+    newTableButton.classList.add('bg-green-500', 'text-white', 'dark:bg-green-800');
+    topTableButton.classList.remove('bg-green-500', 'text-white', 'dark:bg-green-800');
 
     // Update the table with the first set of rowsPerPage data
     const startIndex = (currentPage - 1) * rowsPerPage;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Delegator</title>
-    <link href="dist/output.css" rel="stylesheet" />
+    <link href="/dist/output.css" rel="stylesheet" />
     <link href="button.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -14,9 +14,9 @@
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
@@ -42,17 +42,17 @@
         font-weight: bolder;
       }
 
-      tr:not(.matched):nth-child(even) td {
+      /* tr:not(.matched):nth-child(even) td {
         background-color: #f3f4f6;
       }
 
       tr:not(.matched):nth-child(odd) td {
         background-color: white;
-      }
+      } */
     </style>
   </head>
 
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 dark:bg-gray-800">
     <header id="navbar"></header>
 
     <!-- search -->
@@ -62,17 +62,17 @@
         id="searchInput"
         type="text"
         placeholder="Search..."
-        class="py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        class="py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-500 bg-gray-300 dark:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
       />
       <button
         id="searchButton"
-        class="bg-gray-200 hover:bg-gray-400 duration-300 py-2 px-4 rounded-md focus:outline-none"
+        class="bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:text-gray-100 hover:bg-gray-400 duration-300 py-2 px-4 rounded-md focus:outline-none"
       >
         Search
       </button>
     </div>
 
-    <h4 id="emptySearchWarning" class="text-md text-red-500 text-center hidden">
+    <h4 id="emptySearchWarning" class="text-md text-red-500 dark:text-red-300 text-center hidden">
       Please enter your user name.
     </h4>
     <h4 id="noResultsWarning" class="text-md text-red-500 text-center hidden">
@@ -91,19 +91,19 @@
       </div>
 
       <div
-        class="bg-white w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4"
+        class="bg-white dark:bg-gray-700 w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4"
       >
-        <h3 class="text-2xl text-center font-semibold">Delegator Info</h3>
+        <h3 class="text-2xl text-center dark:text-gray-100 font-semibold">Delegator Info</h3>
         <div class="mx-auto flex justify-start items-center py-2 gap-4">
           <button
             id="topTableButton"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white"
+            class="bg-gray-400 dark:bg-gray-500 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white"
           >
             TOP
           </button>
           <button
             id="newTableButton"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white"
+            class="bg-gray-400 dark:bg-gray-500 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white"
           >
             NEW
           </button>
@@ -113,14 +113,14 @@
           <div class="min-w-full overflow-x-auto mx-auto">
             <table class="table-auto w-full">
               <thead class="rounded-lg">
-                <tr class="bg-gray-200">
+                <tr class="bg-gray-200 dark:bg-gray-500 dark:text-gray-100">
                   <th class="py-2 px-4 text-left uppercase">SL</th>
                   <th class="py-2 px-4 text-left uppercase">User name</th>
                   <th class="py-2 px-4 text-left uppercase">HP Amount</th>
                   <th class="py-2 px-4 text-left uppercase">Date</th>
                 </tr>
               </thead>
-              <tbody id="topTableBody" id="apiTableBody">
+              <tbody id="topTableBody" id="apiTableBody" class="dark:text-gray-100">
                 <!-- Table rows will be dynamically added here -->
               </tbody>
             </table>
@@ -143,7 +143,7 @@
                   <th class="py-2 px-4 text-left uppercase">Date</th>
                 </tr>
               </thead>
-              <tbody id="newTableBody">
+              <tbody id="newTableBody" class="dark:bg-gray-700">
                 <!-- Table rows will be dynamically added here -->
               </tbody>
             </table>
@@ -157,18 +157,18 @@
         >
           <button
             id="prevBtn"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
+            class="bg-gray-300 dark:bg-gray-400 dark:hover:bg-gray-500 dark:text-gray-100 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
             disabled
           >
             <i class="fa-solid fa-arrow-left"></i>
           </button>
-          <div class="text-gray-600">
+          <div class="text-gray-600 dark:text-gray-100">
             Page <span id="currentPage" class="font-semibold">1</span> of
             <span id="totalPages" class="font-semibold">5</span>
           </div>
           <button
             id="nextBtn"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
+            class="bg-gray-300 dark:bg-gray-400 dark:hover:bg-gray-500 dark:text-gray-100 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
           >
             <i class="fa-solid fa-arrow-right"></i>
           </button>

@@ -31,41 +31,41 @@
         background-color: rgb(138, 214, 23);
         font-weight: bolder;
     }
-    tr:not(.matched):nth-child(even) td {
-        background-color: #f3f4f6; /* Set background color for even rows */
+    /* tr:not(.matched):nth-child(even) td {
+        background-color: #f3f4f6;
     }
     tr:not(.matched):nth-child(odd) td {
-        background-color: white; /* Set background color for odd rows */
-    }
+        background-color: white; 
+    } */
 </style>
 
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 dark:bg-gray-800">
     <header id="navbar"></header>
 
     <!-- search -->
 
     <div class="flex justify-center gap-4 text-center py-2 px-4 mt-10">
         <input id="searchInput" type="text" placeholder="Search..."
-            class="py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+            class="py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-500 bg-gray-300 dark:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
         <button id="searchButton"
-            class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
+            class="bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 duration-300 dark:text-gray-100 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none">Search</button>
     </div>
 
 
     <!-- Table -->
 
    <div class="px-4">
-    <div class="bg-white w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
+    <div class="bg-white dark:bg-gray-700 w-full lg:w-3/5 mx-auto rounded-t-3xl shadow-lg p-4 mt-4">
 
-        <h3 class="text-2xl text-center font-semibold">Reward Distribution</h3>
+        <h3 class="text-2xl text-center font-semibold text-gray-700 dark:text-gray-100">Reward Distribution</h3>
 
         <div class="mx-auto flex justify-start items-center py-2 gap-4">
-            <button id="newButton" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+            <button id="newButton" class="bg-gray-300 dark:bg-gray-500 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
                 New
             </button>
-            <button id="totalButton" class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
+            <button id="totalButton" class="bg-gray-300 dark:bg-gray-500 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none font-semibold uppercase active:bg-blue-500 active:text-white">
                 Total
             </button>
         </div>
@@ -74,7 +74,7 @@
             <div class="min-w-full overflow-x-auto mx-auto p-4">
                 <table class="table-auto w-full">
                     <thead class="rounded-lg">
-                        <tr class="bg-gray-200">
+                        <tr class="bg-gray-200 dark:bg-gray-500 dark:text-gray-100">
                             <th class="py-2 px-4 text-left">SL</th>
                             <th class="py-2 px-4 text-left">User Name</th>
                             <th class="py-2 px-4 text-left">Token</th>
@@ -82,7 +82,7 @@
                             <th class="py-2 px-4 text-left">Time</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
+                    <tbody id="tableBody" class="dark:text-gray-100">
                         <!-- Table rows will be dynamically added here -->
                        
                     </tbody>
@@ -94,16 +94,16 @@
 
         <div id="pagination-section" class="flex justify-center items-center mt-4 gap-2">
             <button id="prevBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
+                class="bg-gray-300 dark:bg-gray-400 dark:hover:bg-gray-500 dark:text-gray-100 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip"
                 disabled>
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <div class="text-gray-600">
+            <div class="text-gray-600 dark:text-gray-100">
                 Page <span id="currentPage" class="font-semibold">1</span> of <span id="totalPages"
                     class="font-semibold">5</span>
             </div>
             <button id="nextBtn"
-                class="bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
+                class="bg-gray-300 dark:bg-gray-400 dark:hover:bg-gray-500 dark:text-gray-100 hover:bg-gray-400 py-2 px-4 rounded-md focus:outline-none pagination-tooltip">
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -114,8 +114,8 @@
     <!-- Stats section -->
 
    <div class="px-4">
-    <div id="totalContainer" class="hidden bg-white lg:w-3/5 w-full mx-auto border-t-2 ">
-        <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
+    <div id="totalContainer" class="hidden bg-white dark:bg-gray-700 lg:w-3/5 w-full mx-auto text-gray-700 dark:text-gray-100">
+        <div class="bg-white dark:bg-gray-700 p-10 rounded-t-3xl shadow-lg text-center">
             <h2 class="text-lg font-semibold mb-2">Total Stats</h2>
             <p>Total Amount: </p>
             <p>Total Tokens: </p>

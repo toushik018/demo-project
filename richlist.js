@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     allData.forEach((balance, index) => {
         const userBalance = parseFloat(balance.balance).toFixed(3);
         const totalBalance = (parseFloat(balance.balance) + parseFloat(balance.delegationsIn)).toFixed(3);
-
+    
         const newRow = document.createElement('tr');
+        // Use conditional classes based on the row index
         newRow.innerHTML = `
             <td class="py-2 px-4">${index + 1}</td>
             <td class="py-2 px-4 user-name-cell">${balance.account}</td>
@@ -79,8 +80,17 @@ document.addEventListener('DOMContentLoaded', async function () {
             <td class="py-2 px-4">${balance.pendingUndelegations}</td>
             <td class="py-2 px-4">${totalBalance}</td>
         `;
+    
+        // Apply alternating row background colors
+        if (index % 2 === 0) {
+            newRow.classList.add('bg-gray-200', 'dark:bg-gray-700');
+        } else {
+            newRow.classList.add('bg-white', 'dark:bg-gray-600');
+        }
+    
         tableBody.appendChild(newRow);
     });
+    
 
     spinner.classList.add('hidden');
     tableBody.style.display = '';

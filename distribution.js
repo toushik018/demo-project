@@ -32,7 +32,7 @@ function openModal(index) {
                 const inputField = document.createElement('div');
                 inputField.className = 'text-center p-1 flex items-center gap-2';
                 inputField.innerHTML = `
-                    <label class="block text-gray-700 font-semibold mb-2">${key}:</label>
+                    <label class="block text-gray-700 dark:text-gray-100 font-semibold mb-2">${key}:</label>
                     <input type="number" id="modalToken${key}" name="modalToken${key}" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-gray-500" value="${value}" required>
                     <i class="fas fa-percent"></i>
                 `;

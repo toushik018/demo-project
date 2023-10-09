@@ -51,6 +51,12 @@
 //         // Populate the "New" table
 //         newTableData.forEach((item, index) => {
 //             const row = document.createElement('tr');
+//               // Apply alternating row background colors
+//     if (index % 2 === 0) {
+//         row.classList.add('bg-gray-200', 'dark:bg-gray-700');
+//     } else {
+//         row.classList.add('bg-white', 'dark:bg-gray-600');
+//     }
 //             row.innerHTML = `
 //                 <td class="py-2 px-4">${index + 1}</td>
 //                 <td class="py-2 px-4">${item.username || ''}</td>
@@ -69,7 +75,7 @@
 //         if (totalTableData.length > 0) {
 //             const lastObject = totalTableData[totalTableData.length - 1];
 //             totalContainer.innerHTML = `
-//                  <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
+//                  <div class="bg-white dark:bg-gray-700 p-10 rounded-t-3xl shadow-lg text-center">
 //                      <h2 class="text-xl font-bold mb-2">Total Stats</h2>
 //                      <ul class="font-semibold">
 //                     ${Object.entries(lastObject).map(([key, value]) => `<li>${key}: ${value}</li>`).join('')}
@@ -216,6 +222,12 @@ function populateTable(data) {
         // Populate the "New" table
         newTableData.forEach((item, index) => {
             const row = document.createElement('tr');
+            //   Apply alternating row background colors
+              if (index % 2 === 0) {
+                row.classList.add('bg-gray-200', 'dark:bg-gray-700');
+            } else {
+                row.classList.add('bg-white', 'dark:bg-gray-600');
+            }
             row.innerHTML = `
                 <td class="py-2 px-4">${index + 1}</td>
                 <td class="py-2 px-4">${item.username || ''}</td>
@@ -234,7 +246,7 @@ function populateTable(data) {
         if (totalTableData.length > 0) {
             const lastObject = totalTableData[totalTableData.length - 1];
             totalContainer.innerHTML = `
-                 <div class="bg-white p-10 rounded-t-3xl shadow-lg text-center">
+                 <div class="bg-white dark:bg-gray-700 p-10 rounded-t-3xl shadow-lg text-center">
                      <h2 class="text-xl font-bold mb-2">Total Stats</h2>
                      <ul class="font-semibold">
                     ${Object.entries(lastObject).map(([key, value]) => `<li>${key}: ${value}</li>`).join('')}
